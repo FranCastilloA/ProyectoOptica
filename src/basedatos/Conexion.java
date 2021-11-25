@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 /**
- *
+ *hola Pancho
  * @author Francisco Castillo
  * @version 17-11-2021
  */
@@ -19,5 +19,6 @@ public class Conexion {
             System.out.println(e.getMessage());
         }
         return connection;
+    
     };
 }
