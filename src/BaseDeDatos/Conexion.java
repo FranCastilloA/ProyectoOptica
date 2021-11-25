@@ -1,12 +1,12 @@
 
-package basedatos;
+package BaseDeDatos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 /**
  *hola Pancho
  * @author Francisco Castillo
- * @version 17-11-2021
+ * @version 25-11-2021
  */
 public class Conexion {
     public Connection obtenerConexion(){
