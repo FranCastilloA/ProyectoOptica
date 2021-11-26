@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 /**
- *hola Pancho ql
+ *hola Pancho , me trolean
  * @author Francisco Castillo
  * @version 25-11-2021
  */
