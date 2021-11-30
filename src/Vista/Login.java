@@ -142,7 +142,7 @@ public class Login extends javax.swing.JFrame {
         String usuario = this.jtxt_usuario.getText();
         String pass = this.jtxt_password.getText();
         
-        if (usuario.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("admin1234")){
+        if (usuario.equalsIgnoreCase("admin") && pass.equals("admin1234")){
             this.jlbl_mensajes.setText("password correcto");
         }else{
             this.jlbl_mensajes.setText("password incorrecto");

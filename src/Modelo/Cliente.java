@@ -7,17 +7,27 @@ public class Cliente {
 
     public int rut, telefono;
     public String dv, nombre_cliente, apellido, email;
+    public boolean activo;
 
     public Cliente() {
     }
 
-    public Cliente(int rut, int telefono, String dv, String nombre_cliente, String apellido, String email) {
+    public Cliente(int rut, String dv, String nombre_cliente, String apellido, int telefono, String email, boolean activo) {
         this.rut = rut;
         this.telefono = telefono;
         this.dv = dv;
         this.nombre_cliente = nombre_cliente;
         this.apellido = apellido;
         this.email = email;
+        this.activo = activo;
+    }
+
+    public boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public int getRut() {
@@ -70,8 +80,10 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "rut=" + rut + ", telefono=" + telefono + ", dv=" + dv + ", nombre_cliente=" + nombre_cliente + ", apellido=" + apellido + ", email=" + email + '}';
+        return "Cliente{" + "rut=" + rut + ", telefono=" + telefono + ", dv=" + dv + ", nombre_cliente=" + nombre_cliente + ", apellido=" + apellido + ", email=" + email + ", activo=" + activo + '}';
     }
+
+    
     
     
     
