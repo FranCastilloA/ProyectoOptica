@@ -190,7 +190,64 @@ public class ClienteControlador {
     }
     
     
-    
-    
-    
+    //Metodo para listar los nombres de los clientes, by Fco Castillo
+    public List<Cliente> listarTodosClientesNombre(){
+        
+        List<Cliente> lista = new ArrayList<>();
+        
+        try {
+            Conexion con = new Conexion();
+            java.sql.Connection cnx = con.obtenerConexion();
+            
+            String query = "SELECT nombre_cliente FROM cliente WHERE activo = 1";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+                        
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Cliente cliente = new Cliente();
+                cliente.setNombre_cliente(rs.getString("nombre_cliente"));
+                
+                lista.add(cliente);
+            }
+            
+            rs.close();
+            stmt.close();
+            cnx.close();
+                 
+        } catch (Exception e) {
+            System.out.println("Error SQL al buscar Clientes"+ e.getMessage());
+            
+        }
+                     
+        return lista;
+    }
+    //Metodo para buscar un cliente por nombre, by Fco Castillo
+    public Cliente buscarClienteNombre(String nombre){
+        
+        Cliente cliente = new Cliente();
+        try {
+            Conexion con = new Conexion();
+            java.sql.Connection cnx = con.obtenerConexion();
+            
+            String query = "SELECT rut FROM cliente WHERE nombre_cliente = ?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setString(1,nombre);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                cliente.setRut(rs.getInt("rut"));
+            }
+            
+            rs.close();
+            stmt.close();
+            cnx.close();
+                 
+        } catch (Exception e) {
+            System.out.println("Error SQL al buscar Cliente"+ e.getMessage());
+            
+        }
+        return cliente;
+    }
 }

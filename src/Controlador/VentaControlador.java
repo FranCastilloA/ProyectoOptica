@@ -144,7 +144,7 @@ public class VentaControlador {
             
             String query = "SELECT id_venta, total, fecha, medio_pago, tipo_documento, numero_operacion, rut_cliente FROM venta WHERE fecha = ? order by id_venta";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setDate(1, (java.sql.Date) fecha);
+            stmt.setDate(1, new java.sql.Date(fecha.getTime()));
             
             
             ResultSet rs = stmt.executeQuery();
