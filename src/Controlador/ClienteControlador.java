@@ -1,7 +1,7 @@
 package Controlador;
+
 import BaseDeDatos.Conexion;
 import Modelo.Cliente;
-import com.sun.jdi.connect.spi.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -13,59 +13,59 @@ import java.util.List;
  * @date 30/11/2021
  */
 public class ClienteControlador {
-    
-    public boolean agregarCliente(Cliente cliente){
-                
+
+    public boolean agregarCliente(Cliente cliente) {
+
         try {
             Conexion con = new Conexion();
             java.sql.Connection cnx = con.obtenerConexion();
-            
+
             String query = "INSERT INTO cliente(rut,dv,nombre_cliente,apellido,telefono,email,activo) VALUES(?,?,?,?,?,?,?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1,cliente.getRut());
-            stmt.setString(2,cliente.getDv());
-            stmt.setString(3,cliente.getNombre_cliente());
-            stmt.setString(4,cliente.getApellido());
-            stmt.setInt(5,cliente.getTelefono());
-            stmt.setString(6,cliente.getEmail());
+            stmt.setInt(1, cliente.getRut());
+            stmt.setString(2, cliente.getDv());
+            stmt.setString(3, cliente.getNombre_cliente());
+            stmt.setString(4, cliente.getApellido());
+            stmt.setInt(5, cliente.getTelefono());
+            stmt.setString(6, cliente.getEmail());
             stmt.setBoolean(7, cliente.getActivo());
-            
+
             stmt.executeUpdate();
             stmt.close();
             cnx.close();
-            return true;           
-            
+            return true;
+
         } catch (Exception e) {
-            
-            System.out.println("Error SQL al agregar Cliente"+ e.getMessage());
+
+            System.out.println("Error SQL al agregar Cliente" + e.getMessage());
             return false;
         }
     }
-    
-    public boolean actualizarCliente(Cliente cliente){
-                
+
+    public boolean actualizarCliente(Cliente cliente) {
+
         try {
             Conexion con = new Conexion();
             java.sql.Connection cnx = con.obtenerConexion();
-            
+
             String query = "UPDATE cliente set nombre_cliente=?, apellido=?, telefono=?, email=?, activo=? WHERE rut=? AND activo=1";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            
-            stmt.setString(1,cliente.getNombre_cliente());
-            stmt.setString(2,cliente.getApellido());
-            stmt.setInt(3,cliente.getTelefono());
-            stmt.setString(4,cliente.getEmail());
-            stmt.setBoolean(5,cliente.getActivo());
-            stmt.setInt(6,cliente.getRut());
-            
+
+            stmt.setString(1, cliente.getNombre_cliente());
+            stmt.setString(2, cliente.getApellido());
+            stmt.setInt(3, cliente.getTelefono());
+            stmt.setString(4, cliente.getEmail());
+            stmt.setBoolean(5, cliente.getActivo());
+            stmt.setInt(6, cliente.getRut());
+
             stmt.executeUpdate();
             stmt.close();
             cnx.close();
-            return true;           
-            
+            return true;
+
         } catch (Exception e) {
-            
-            System.out.println("Error SQL al modificar Cliente"+ e.getMessage());
+
+            System.out.println("Error SQL al modificar Cliente" + e.getMessage());
             return false;
         }
     }
@@ -93,104 +93,152 @@ public class ClienteControlador {
 //        }
 //    }
 // en lugar de DELETE se hizo un "delete" que solo desactiva al cliente.
-    public boolean eliminarCliente(int rut){
-        
+
+    public boolean eliminarCliente(int rut) {
+
         try {
             Conexion con = new Conexion();
             java.sql.Connection cnx = con.obtenerConexion();
-            
+
             String query = "UPDATE cliente SET activo = 0 WHERE rut=? ";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            
-            stmt.setInt(1,rut);
-            
-            
+
+            stmt.setInt(1, rut);
+
             stmt.executeUpdate();
             stmt.close();
             cnx.close();
-            return true;           
-            
+            return true;
+
         } catch (Exception e) {
-            System.out.println("Error SQL al eliminar Cliente"+ e.getMessage());
+            System.out.println("Error SQL al eliminar Cliente" + e.getMessage());
             return false;
         }
     }
-    
-    
-    public Cliente buscarCliente(int rut){
-        
+
+    //Buscador de clientes por rut.
+    public Cliente buscarClienteRut(int rut) {
+
         Cliente cliente = new Cliente();
+
         try {
             Conexion con = new Conexion();
             java.sql.Connection cnx = con.obtenerConexion();
-            
-            String query = "SELECT rut,dv,nombre_cliente,apellido,telefono,email,disponible FROM cliente WHERE apellido=? ";
+
+            String query = "SELECT rut,dv,nombre_cliente,apellido,telefono,email,activo FROM cliente WHERE rut=? ";
+
             PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setString(1,"apellido");
-            
+            stmt.setInt(1, rut);
+
             ResultSet rs = stmt.executeQuery();
-            
-            if(rs.next()){
+
+            while (rs.next()) {
+                //Cliente cliente = new Cliente();
+
                 cliente.setRut(rs.getInt("rut"));
                 cliente.setDv(rs.getString("dv"));
-                cliente.setNombre_cliente(rs.getString("nomre_cliente"));
+                cliente.setNombre_cliente(rs.getString("nombre_cliente"));
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setTelefono(rs.getInt("telefono"));
                 cliente.setEmail(rs.getString("email"));
                 cliente.setActivo(rs.getBoolean("activo"));
+
+                //lista.add(cliente);
+
             }
-            
+
             rs.close();
             stmt.close();
             cnx.close();
-                 
+
         } catch (Exception e) {
-            System.out.println("Error SQL al buscar Cliente"+ e.getMessage());
-            
+            System.out.println("Error SQL al buscar cliente" + e.getMessage());
+
         }
+
         return cliente;
     }
-    
-    public List<Cliente> buscarTodosClientes(){
-        
+
+    //Buscador de clientes por apellido.
+    public List<Cliente> buscarClienteApellido(String apellido) {
+
         List<Cliente> lista = new ArrayList<>();
-        
+
         try {
             Conexion con = new Conexion();
             java.sql.Connection cnx = con.obtenerConexion();
-            
-            String query = "SELECT rut,dv,nombre_cliente,apellido,telefono,email,disponible FROM cliente ";
+
+            String query = "SELECT rut,dv,nombre_cliente,apellido,telefono,email,activo FROM cliente WHERE apellido=? ORDER BY cliente.apellido";
+
             PreparedStatement stmt = cnx.prepareStatement(query);
-                        
+            stmt.setString(1, apellido);
+
             ResultSet rs = stmt.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 Cliente cliente = new Cliente();
+
                 cliente.setRut(rs.getInt("rut"));
                 cliente.setDv(rs.getString("dv"));
-                cliente.setNombre_cliente(rs.getString("nomre_cliente"));
+                cliente.setNombre_cliente(rs.getString("nombre_cliente"));
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setTelefono(rs.getInt("telefono"));
                 cliente.setEmail(rs.getString("email"));
                 cliente.setActivo(rs.getBoolean("activo"));
-                
+
                 lista.add(cliente);
+
             }
-            
+
             rs.close();
             stmt.close();
             cnx.close();
-                 
+
         } catch (Exception e) {
-            System.out.println("Error SQL al buscar Clientes"+ e.getMessage());
-            
+            System.out.println("Error SQL al buscar Clientes" + e.getMessage());
+
         }
-                     
+
         return lista;
     }
     
-    
-    
-    
-    
+    //Se crea lista con todos los clientes.
+    public List<Cliente> buscarTodosClientes() {
+
+        List<Cliente> lista = new ArrayList<>();
+
+        try {
+            Conexion con = new Conexion();
+            java.sql.Connection cnx = con.obtenerConexion();
+
+            String query = "SELECT rut,dv,nombre_cliente,apellido,telefono,email,activo FROM cliente ORDER BY cliente.apellido";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setRut(rs.getInt("rut"));
+                cliente.setDv(rs.getString("dv"));
+                cliente.setNombre_cliente(rs.getString("nombre_cliente"));
+                cliente.setApellido(rs.getString("apellido"));
+                cliente.setTelefono(rs.getInt("telefono"));
+                cliente.setEmail(rs.getString("email"));
+                cliente.setActivo(rs.getBoolean("activo"));
+
+                lista.add(cliente);
+            }
+
+            rs.close();
+            stmt.close();
+            cnx.close();
+
+        } catch (Exception e) {
+            System.out.println("Error SQL al buscar Clientes" + e.getMessage());
+
+        }
+
+        return lista;
+    }
+
 }
