@@ -36,8 +36,11 @@ public class MenuAdmin extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenuAd = new javax.swing.JMenu();
         jmiVenta = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jmiHisVenta = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jmiMantCli = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jmiMantProduc = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jmiAyuda = new javax.swing.JMenuItem();
@@ -57,6 +60,11 @@ public class MenuAdmin extends javax.swing.JFrame {
         jMenuAd.setBackground(new java.awt.Color(0, 153, 153));
         jMenuAd.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jMenuAd.setText("Menú");
+        jMenuAd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAdActionPerformed(evt);
+            }
+        });
 
         jmiVenta.setText("Nueva Venta");
         jmiVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -65,14 +73,32 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
         jMenuAd.add(jmiVenta);
+        jMenuAd.add(jSeparator1);
 
         jmiHisVenta.setText("Historial Ventas");
+        jmiHisVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiHisVentaActionPerformed(evt);
+            }
+        });
         jMenuAd.add(jmiHisVenta);
+        jMenuAd.add(jSeparator2);
 
         jmiMantCli.setText("Mantenedor Cliente");
+        jmiMantCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiMantCliActionPerformed(evt);
+            }
+        });
         jMenuAd.add(jmiMantCli);
+        jMenuAd.add(jSeparator3);
 
         jmiMantProduc.setText("Mantenedor Productos");
+        jmiMantProduc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiMantProducActionPerformed(evt);
+            }
+        });
         jMenuAd.add(jmiMantProduc);
 
         jMenuBar2.add(jMenuAd);
@@ -108,8 +134,30 @@ public class MenuAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVentaActionPerformed
-        // TODO add your handling code here:
+        
+        GenerarVenta genVenta= new GenerarVenta();
+        genVenta.setVisible(true);
     }//GEN-LAST:event_jmiVentaActionPerformed
+
+    private void jmiMantProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMantProducActionPerformed
+        
+        MantenedorProducto manProductos =new MantenedorProducto();
+        manProductos.setVisible(true);
+    }//GEN-LAST:event_jmiMantProducActionPerformed
+
+    private void jMenuAdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAdActionPerformed
+        
+    }//GEN-LAST:event_jMenuAdActionPerformed
+
+    private void jmiHisVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiHisVentaActionPerformed
+        ListarVentas listVentas= new ListarVentas ();
+        listVentas.setVisible(true);
+    }//GEN-LAST:event_jmiHisVentaActionPerformed
+
+    private void jmiMantCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMantCliActionPerformed
+        MantenedorCliente manCliente =new MantenedorCliente();
+        manCliente.setVisible(true);
+    }//GEN-LAST:event_jmiMantCliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,6 +202,9 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuAd;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JMenuItem jmiAyuda;
     private javax.swing.JMenuItem jmiHisVenta;
     private javax.swing.JMenuItem jmiMantCli;

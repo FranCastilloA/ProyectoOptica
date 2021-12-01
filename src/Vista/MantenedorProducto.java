@@ -16,6 +16,8 @@ public class MantenedorProducto extends javax.swing.JFrame {
      */
     public MantenedorProducto() {
         initComponents();
+        //inicializa la ventana en el centrol
+        this.setLocationRelativeTo(null);
     }
 
     /**

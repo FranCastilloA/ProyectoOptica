@@ -32,11 +32,14 @@ public class MenuVendedor extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmiVenta = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jmiHistVent = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jmiMantCli = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menú Vendedor");
 
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("© Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021");
@@ -46,12 +49,29 @@ public class MenuVendedor extends javax.swing.JFrame {
         jMenu1.setText("Menú");
 
         jmiVenta.setText("Nueva Venta");
+        jmiVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiVentaActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmiVenta);
+        jMenu1.add(jSeparator1);
 
         jmiHistVent.setText("Historial Ventas");
+        jmiHistVent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiHistVentActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmiHistVent);
+        jMenu1.add(jSeparator2);
 
-        jmiMantCli.setText("Mantenedor Clientes");
+        jmiMantCli.setText("Clientes");
+        jmiMantCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiMantCliActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmiMantCli);
 
         jMenuBar1.add(jMenu1);
@@ -80,6 +100,22 @@ public class MenuVendedor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmiVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVentaActionPerformed
+       GenerarVenta genVenta =new GenerarVenta();
+       genVenta.setVisible(true);
+    }//GEN-LAST:event_jmiVentaActionPerformed
+
+    private void jmiHistVentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiHistVentActionPerformed
+        ListarVentas listVentas = new ListarVentas();
+        listVentas.setVisible(true);
+    }//GEN-LAST:event_jmiHistVentActionPerformed
+
+    private void jmiMantCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMantCliActionPerformed
+        MantenedorCliente manClientes = new MantenedorCliente();
+        manClientes.setVisible(true);
+        
+    }//GEN-LAST:event_jmiMantCliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,6 +157,8 @@ public class MenuVendedor extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JMenuItem jmiHistVent;
     private javax.swing.JMenuItem jmiMantCli;
     private javax.swing.JMenuItem jmiVenta;
