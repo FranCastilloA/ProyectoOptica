@@ -5,20 +5,59 @@
  */
 package Vista;
 
+import Controlador.DetalleVentaControlador;
+import Modelo.DetalleVenta2;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Francisco Castillo
- * @version 28-11-2021
+ * @version 29-11-2021
+ * 28-11: creacion
+ * 29-11: renombrado y creacion de metodos
  */
-public class DetalleVenta extends javax.swing.JFrame {
+public class DetalleVentaGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form DetalleVenta
      */
-    public DetalleVenta() {
+    public DetalleVentaGUI() {
         initComponents();
         //inicializa la ventana en el centrol
         this.setLocationRelativeTo(null);
+        try {
+            //creamos un obj listar ventas para acceder al dato estatico
+            ListarVentas lv = new ListarVentas();
+            jlbl_IdVenta.setText(lv.id_venta+"");
+            llenarTabla(lv.id_venta);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    //metodo para llenar la tabla automaticamente.
+    private void llenarTabla(int id){
+        //iniciamos variables
+        String producto;
+        int cantidad, precio,subtotal;
+        //creamos obj del controlador
+        DetalleVentaControlador dvc = new DetalleVentaControlador();
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_datos.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
+        //llenamos la lista con el metodo del controlador
+        List<DetalleVenta2> lista = dvc.listarPorIdVenta(id);
+        //recorremos la lista y llenamos la tabla
+        for(DetalleVenta2 dv : lista){
+            producto = dv.getNombre_producto();
+            cantidad = dv.getCantidad_venta();
+            precio = dv.getPrecio_unitario();
+            subtotal = dv.getSubtotal();
+            
+            modelo.addRow(new Object[]{producto, cantidad, precio, subtotal});
+        }
+        
     }
 
     /**
@@ -32,16 +71,16 @@ public class DetalleVenta extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtbl_datos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jlbl_IdVenta = new javax.swing.JLabel();
         jbtn_volver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("DETALLE VENTA");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbl_datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -56,7 +95,7 @@ public class DetalleVenta extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -67,8 +106,8 @@ public class DetalleVenta extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        jtbl_datos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jtbl_datos);
 
         jLabel1.setText("ID Venta:");
 
@@ -102,6 +141,11 @@ public class DetalleVenta extends javax.swing.JFrame {
         );
 
         jbtn_volver.setText("Volver");
+        jbtn_volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_volverActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021");
 
@@ -137,48 +181,54 @@ public class DetalleVenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DetalleVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DetalleVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DetalleVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DetalleVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jbtn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_volverActionPerformed
+        
+        dispose();
+    }//GEN-LAST:event_jbtn_volverActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DetalleVenta().setVisible(true);
-            }
-        });
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(DetalleVentaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(DetalleVentaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(DetalleVentaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(DetalleVentaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new DetalleVentaGUI().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbtn_volver;
     private javax.swing.JLabel jlbl_IdVenta;
+    private javax.swing.JTable jtbl_datos;
     // End of variables declaration//GEN-END:variables
 }

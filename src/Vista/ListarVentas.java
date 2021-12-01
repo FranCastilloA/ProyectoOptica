@@ -5,9 +5,21 @@
  */
 package Vista;
 
+import Controlador.VentaControlador;
+import Modelo.Venta;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author Neotemplar-R480
+ * @author Francisco Castillo
+ * @version 30-11-2021
+ * 28-11: creacion
+ * 29-11: boton detalle compra todos, detalle compra cliente, detalle compra fecha
+ * 30-11: metodo llenar tabla todos, iniciarla al nacer la ventana
  */
 public class ListarVentas extends javax.swing.JFrame {
 
@@ -18,6 +30,59 @@ public class ListarVentas extends javax.swing.JFrame {
         initComponents();
         //inicializa la ventana en el centrol
         this.setLocationRelativeTo(null);
+        try {
+            llenarTablaTodos();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    //inicializamos una variable estatica para ser usado en detalla venta
+    public static int id_venta=0;
+    
+    //Metodo para llenar la tabla de todas las Ventas
+    private void llenarTablaTodos(){
+        //iniciamos variables
+        int idventa, total, numero_operacion, rut_cliente;
+        String medio_pago, tipo_documento, fechac;
+        Date fecha;
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+        //creamos obj del controlador
+        VentaControlador vc = new VentaControlador();
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Todos.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
+        //llenamos la lista con el metodo del controlador
+        List<Venta> lista = vc.listarTodos();
+        //recorremos la lista y llenamos la tabla
+        for(Venta v : lista){
+            idventa = v.getId_venta();
+            total = v.getTotal();
+            fecha = v.getFecha();
+            medio_pago = v.getMedio_pago();
+            tipo_documento = v.getTipo_documento();
+            numero_operacion = v.getNumero_operacion();
+            rut_cliente = v.getRut_cliente();
+            
+            if(medio_pago.equals("E")){
+                medio_pago = "Efectivo";
+            }else if(medio_pago.equals("D")){
+                medio_pago = "Debito";
+            }else if(medio_pago.equals("C")){
+                medio_pago = "Credito";
+            }else{
+                medio_pago = "Tranferencia";
+            }
+            
+            if(tipo_documento.equals("B")){
+                tipo_documento = "Boleta";
+            }else{
+                tipo_documento = "Factura";
+            }
+            fechac =   formatoFecha.format(fecha)+"";
+            
+            modelo.addRow(new Object[]{idventa, total, fechac, medio_pago, tipo_documento, numero_operacion, rut_cliente});
+        }
     }
 
     /**
@@ -60,6 +125,11 @@ public class ListarVentas extends javax.swing.JFrame {
         setTitle("LISTAR VENTAS");
 
         jbtn_VerDCTodos.setText("Ver Detalle Compra");
+        jbtn_VerDCTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_VerDCTodosActionPerformed(evt);
+            }
+        });
 
         jtbl_Todos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,6 +188,11 @@ public class ListarVentas extends javax.swing.JFrame {
         jTabbedPane1.addTab("Listar Todas las Ventas", jPanel1);
 
         jbtn_VerDCCliente.setText("Ver Detalle Compra");
+        jbtn_VerDCCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_VerDCClienteActionPerformed(evt);
+            }
+        });
 
         jtbl_Cliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -200,6 +275,11 @@ public class ListarVentas extends javax.swing.JFrame {
         jTabbedPane1.addTab("Listar por Cliente", jPanel2);
 
         jbtn_VerDCFecha.setText("Ver Detalle Compra");
+        jbtn_VerDCFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_VerDCFechaActionPerformed(evt);
+            }
+        });
 
         jtbl_Fecha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -298,6 +378,11 @@ public class ListarVentas extends javax.swing.JFrame {
         jTabbedPane1.addTab("Listar por Fecha", jPanel3);
 
         jbtn_Volver.setText("Volver al Menú");
+        jbtn_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_VolverActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021");
 
@@ -334,6 +419,76 @@ public class ListarVentas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtn_VerDCTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_VerDCTodosActionPerformed
+        int dato;
+        int row;
+        try {
+            //seleccionamo la fila de la tabla que haya sido seleccionada, 
+            //getselectedrow nos devolvera el nro de la fila, si no hay ninguna sera -1
+            row = this.jtbl_Todos.getSelectedRow();
+            //luego obtenemos el dato que esta en la tabla en este caso el titulo, que esta en posicion 1
+            //recordar que la posicion parte desde  0 (ID)
+            //esto con getValueAt(fila, columna)
+            if(row >=0){
+                dato = (Integer) this.jtbl_Todos.getValueAt(row, 0);
+                id_venta = dato;
+                new DetalleVentaGUI().setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(this, "Seleccione una fila de Venta ", "Validación", 2);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_jbtn_VerDCTodosActionPerformed
+
+    private void jbtn_VerDCClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_VerDCClienteActionPerformed
+        int dato;
+        int row;
+        try {
+            //seleccionamo la fila de la tabla que haya sido seleccionada, 
+            //getselectedrow nos devolvera el nro de la fila, si no hay ninguna sera -1
+            row = this.jtbl_Cliente.getSelectedRow();
+            //luego obtenemos el dato que esta en la tabla en este caso el titulo, que esta en posicion 1
+            //recordar que la posicion parte desde  0 (ID)
+            //esto con getValueAt(fila, columna)
+            if(row >=0){
+                dato = (Integer) this.jtbl_Cliente.getValueAt(row, 0);
+                id_venta = dato;
+                new DetalleVentaGUI().setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(this, "Seleccione una fila de Venta ", "Validación", 2);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_jbtn_VerDCClienteActionPerformed
+
+    private void jbtn_VerDCFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_VerDCFechaActionPerformed
+        int dato;
+        int row;
+        try {
+            //seleccionamo la fila de la tabla que haya sido seleccionada, 
+            //getselectedrow nos devolvera el nro de la fila, si no hay ninguna sera -1
+            row = this.jtbl_Fecha.getSelectedRow();
+            //luego obtenemos el dato que esta en la tabla en este caso el titulo, que esta en posicion 1
+            //recordar que la posicion parte desde  0 (ID)
+            //esto con getValueAt(fila, columna)
+            if(row >=0){
+                dato = (Integer) this.jtbl_Fecha.getValueAt(row, 0);
+                id_venta = dato;
+                new DetalleVentaGUI().setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(this, "Seleccione una fila de Venta ", "Validación", 2);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_jbtn_VerDCFechaActionPerformed
+
+    private void jbtn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_VolverActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbtn_VolverActionPerformed
 
     /**
      * @param args the command line arguments

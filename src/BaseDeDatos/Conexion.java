@@ -11,7 +11,7 @@ public class Conexion {
     public Connection obtenerConexion(){
         Connection connection = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/optica","root","");
             System.out.println("Conexion exitosa");
         } catch (ClassNotFoundException | SQLException e) {

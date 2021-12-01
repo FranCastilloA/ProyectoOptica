@@ -18,9 +18,44 @@ import java.util.List;
 /**
  *
  * @author Francisco Castillo
- * @version 28-11-2021
+ * @version 29-11-2021
+ * 28-11: Metodos Listar
+ * 29-11: Metodo Agregar
  */
 public class VentaControlador {
+    
+    //metodo para Agregar Venta
+    public boolean agregarVenta(Venta venta){
+        Date date;
+        try{
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+            
+            date = venta.getFecha();
+            
+            String query = "INSERT INTO venta(total, fecha, medio_pago, tipo_documento, numero_operacion, rut_cliente) VALUES (?,?,?,?,?,?)";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            
+            stmt.setInt(1, venta.getTotal());
+            stmt.setDate(2, new java.sql.Date(date.getTime()));
+            stmt.setString(3, venta.getMedio_pago());
+            stmt.setString(4, venta.getTipo_documento());
+            stmt.setInt(5, venta.getNumero_operacion());
+            stmt.setInt(6, venta.getRut_cliente());
+            
+            stmt.executeUpdate();
+            stmt.close();
+            cnx.close();
+            
+            return true;
+            } catch (SQLException e) {
+            System.out.println("Error SQL al agregar Venta: " + e.getMessage());
+            return false;
+        } catch(Exception e){
+            System.out.println("Error al agregar Venta (EXCEPTION): " + e.getMessage());
+            return false;
+        }
+    }
     
     //Metodo para Listar todas las Ventas
     public List<Venta> listarTodos(){
