@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Vista;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -125,9 +126,24 @@ public class MantenedorProducto extends javax.swing.JFrame {
 
         jbtnGuardar.setBackground(new java.awt.Color(0, 153, 153));
         jbtnGuardar.setText("Guardar");
+        jbtnGuardar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jbtnGuardarFocusGained(evt);
+            }
+        });
+        jbtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnGuardarActionPerformed(evt);
+            }
+        });
 
         jbtnLimpiar.setBackground(new java.awt.Color(255, 255, 255));
         jbtnLimpiar.setText("Limpiar");
+        jbtnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnLimpiarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setForeground(new java.awt.Color(153, 153, 153));
         jLabel8.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021");
@@ -218,6 +234,11 @@ public class MantenedorProducto extends javax.swing.JFrame {
 
         jbtnBuscarNP.setBackground(new java.awt.Color(153, 153, 153));
         jbtnBuscarNP.setText("Buscar");
+        jbtnBuscarNP.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jbtnBuscarNPFocusGained(evt);
+            }
+        });
         jbtnBuscarNP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnBuscarNPActionPerformed(evt);
@@ -344,7 +365,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(0, 153, 153));
 
-        jlbIdBuscarModificar.setText("ID Producto:");
+        jlbIdBuscarModificar.setText("Nombre producto:");
 
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setText("Buscar");
@@ -638,6 +659,67 @@ public class MantenedorProducto extends javax.swing.JFrame {
     private void jtxtDescripProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtDescripProducActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtDescripProducActionPerformed
+
+    private void jbtnGuardarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jbtnGuardarFocusGained
+        this.jbtnGuardar.requestFocus();
+    }//GEN-LAST:event_jbtnGuardarFocusGained
+
+    private void jbtnBuscarNPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jbtnBuscarNPFocusGained
+        this.jbtnBuscarNP.requestFocus();
+    }//GEN-LAST:event_jbtnBuscarNPFocusGained
+
+    private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
+        this.jtxtNomProduc.setText("");
+        this.jcomboxTipProduc.setSelectedIndex(0);
+        this.jtxtDescripProduc.setText("");
+        this.jtxtPrecio.setText("");
+        this.jtxtCantidad.setText("");
+        this.jCheckBox1.setSelected(false);
+
+        this.jtxtNomProduc.requestFocus();
+    }//GEN-LAST:event_jbtnLimpiarActionPerformed
+
+    private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
+        //Guardar los datos ingresados
+        String nombreProducto = this.jtxtNomProduc.getText();
+        int tipoProducto = this.jcomboxTipProduc.getSelectedIndex();
+        String descripcion = this.jtxtDescripProduc.getText();
+        String precio_str  = this.jtxtPrecio.getText();
+        String cantidad_str = this.jtxtCantidad.getText();
+        Boolean disponible = this.jCheckBox1.isSelected();
+        
+        //Validación de que esten completos los datos
+        if (nombreProducto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Nombre del Producto", "Validacion", 2);
+            this.jtxtNomProduc.requestFocus();
+            return;
+        }
+//        if (tipoProducto.isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Ingrese dv", "Validacion", 2);
+//            this.jcomboxTipProduc.requestFocus();
+//            return;
+//        }
+        if (descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Descripción del Producto", "Validacion", 2);
+            this.jtxtDescripProduc.requestFocus();
+            return;
+        }
+        if (precio_str.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Precio del Producto", "Validacion", 2);
+            this.jtxtPrecio.requestFocus();
+            return;
+        }
+        if (cantidad_str.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Cantidad del Producto", "Validacion", 2);
+            this.jtxtCantidad.requestFocus();
+            return;
+        }
+       
+        int precio, cantidad;
+        precio = Integer.parseInt(precio_str);
+        cantidad = Integer.parseInt(cantidad_str);
+        
+    }//GEN-LAST:event_jbtnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
