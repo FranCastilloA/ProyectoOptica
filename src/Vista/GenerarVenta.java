@@ -6,16 +6,27 @@
 package Vista;
 
 import Controlador.ClienteControlador;
+import Controlador.DetalleVentaControlador;
 import Controlador.ProductoControlador;
+import Controlador.VentaControlador;
 import Modelo.Cliente;
+import Modelo.DetalleVenta;
 import Modelo.Producto;
+import Modelo.Venta;
+import java.awt.HeadlessException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Neotemplar-R480
+ * @author Francisco Castillo
+ * @version 02-12-2021
  */
 public class GenerarVenta extends javax.swing.JFrame {
 
@@ -30,12 +41,13 @@ public class GenerarVenta extends javax.swing.JFrame {
             llenarListaNombres();
             llenarListaProductos();
             vaciarCarrito();
+            iniciarFecha();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    //creamos una copia de la tabla inicial para trabajar
-    //DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Carrito.getModel();
+    //creamos una variable total
+    int total=0;
     
     //Metodo para llenar el jcombobox con los nombres de los clientes
     private void llenarListaNombres(){
@@ -126,6 +138,138 @@ public class GenerarVenta extends javax.swing.JFrame {
         //dejamos filas 0 inicialmente
         modelo.setRowCount(0);
     }
+    //Metodo para inicializar Fecha
+    private void iniciarFecha(){
+        try {
+            String fechastr;
+            //Date fecha = null;
+            //SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            fechastr = dtf.format(LocalDateTime.now());//.toString();
+            System.out.println(fechastr);
+            this.jlbl_Fecha.setText(fechastr);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+               
+    }
+    //Metodo para ingresar una Venta y luego registramos su detalle invocando el metodo ingresarDetalle
+    private void generarVenta(){
+        //inicializamos variables a utilizar
+        int totalv, numero_operacion, rut_cliente;
+        String medio_pago, tipo_documento, nro_op;
+        Date fecha;
+        try {
+            //rescatamos los valores necesarios
+            //si total no es mayor q 0, no se puede ingresar venta
+            if(total>0){
+                totalv = total;
+            }else{
+                JOptionPane.showMessageDialog(this, "No hay productos en el Carro de Compras", "Validacion", 2);
+                return;
+            }
+            //rescatamos la fecha
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            fecha = formatoFecha.parse(this.jlbl_Fecha.getText());
+            //recatamos el medio de pago
+            if(this.jrb_Efectivo.isSelected()){
+                medio_pago = "E";
+            }else if(this.jrb_Debito.isSelected()){
+                medio_pago = "D";
+            }else if(this.jrb_Credito.isSelected()){
+                medio_pago = "C";
+            }else if(this.jrb_Transferencia.isSelected()){
+                medio_pago = "T";
+            }else{
+                JOptionPane.showMessageDialog(this, "Seleccione Medio de Pago", "Validacion", 2);
+                return;
+            }
+            //vemos que numero de operacion no este vacio
+            nro_op = this.jtxt_NumeroOperacion.getText();
+            if(nro_op.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Ingrese Numero de Operación, 4 digitos", "Validacion", 2);
+                this.jtxt_NumeroOperacion.requestFocus();
+                return;
+            }
+            numero_operacion = Integer.parseInt(nro_op);
+            //rescatamos tipo de documento
+            if(this.jrb_Boleta.isSelected()){
+                tipo_documento = "B";
+            }else if(this.jrb_Factura.isSelected()){
+                tipo_documento = "F";
+            }else{
+                JOptionPane.showMessageDialog(this, "Seleccione Medio de Pago", "Validacion", 2);
+                return;
+            }
+            //rescatamos rut de cliente
+            rut_cliente =  Integer.parseInt(this.jlbl_Rut.getText());
+            //Creamos el obj del modelo
+            Venta venta = new Venta();
+            //lo llenamos
+            venta.setTotal(totalv);
+            venta.setFecha(fecha);
+            venta.setMedio_pago(medio_pago);
+            venta.setTipo_documento(tipo_documento);
+            venta.setNumero_operacion(numero_operacion);
+            venta.setRut_cliente(rut_cliente);
+            //creamos el obj controlador
+            VentaControlador vc = new VentaControlador();
+            //agregamos la venta
+            if(vc.agregarVenta(venta)){
+                JOptionPane.showMessageDialog(this, "Se Agregó la Venta", "Información", 1);
+                //de ser exitos registramos el detalle
+                ingresarDetalle();
+            }else{
+                JOptionPane.showMessageDialog(this, "No se Agregó la Venta", "Información", 0);
+            }
+            
+        } catch (HeadlessException | NumberFormatException | ParseException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    //Metodo para ingresar el detalle de venta
+    private void ingresarDetalle(){
+        //inicializamos las variables con que vamos a trabajar
+        int filas, id_venta, id_prod, cantidad;
+        int nroVentas = 0;
+        //obtenemos el id de la venta recien ingresada
+        //creamos el obj del controlador
+        VentaControlador vc = new VentaControlador();
+        id_venta = vc.ultimaVenta();
+        if(id_venta == 0){
+           JOptionPane.showMessageDialog(this, "No se ingreso la venta o No se Rescato el ID_VENTA", "Validacion", 2);
+           return;
+        }
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Carrito.getModel();
+        //obtenemos el numero de filas del carrito
+        filas =  modelo.getRowCount();
+        //Creamos el obj del controlador de detalleventa
+        DetalleVentaControlador dvc = new DetalleVentaControlador();
+        //recorremos el carrito y regisramos las ventas
+        for(int i=0; i<filas; i++ ){
+            //indicamos la fila correcta
+            int row = i;
+            //en la 3ra columna esta cantidad
+            cantidad = (Integer) this.jtbl_Carrito.getValueAt(row, 3);
+            //en la  1ra columna esta el id producto
+            id_prod = (Integer) this.jtbl_Carrito.getValueAt(row, 0);
+            //Creamos un obj del modelo
+            DetalleVenta dv = new DetalleVenta(cantidad, id_venta, id_prod);
+            //Agregamos a la base de datos el detalle de venta
+            if(dvc.agregarDetalleVenta(dv)){
+                //incrementamos el contador de filas ingresadas
+                nroVentas ++;
+            }
+        }
+        //Enviamos otro aviso de cuantos detalles de venta se ingresaron
+        if(nroVentas>0){
+            JOptionPane.showMessageDialog(this, "Se Ingresaron: "+nroVentas+" Registros", "Información", 1);
+        } else {
+            JOptionPane.showMessageDialog(this, "No se Registraron los Productos", "Información", 0);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -181,9 +325,11 @@ public class GenerarVenta extends javax.swing.JFrame {
         jrb_Factura = new javax.swing.JRadioButton();
         jLabel16 = new javax.swing.JLabel();
         jtxt_NumeroOperacion = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jlbl_Fecha = new javax.swing.JLabel();
         jbtn_IngresarCompra = new javax.swing.JButton();
         jbtn_CancelarCompra = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbtn_Volver = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -296,6 +442,11 @@ public class GenerarVenta extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Carro de Compras"));
 
         jbtn_Quitar.setText("Quitar Producto");
+        jbtn_Quitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_QuitarActionPerformed(evt);
+            }
+        });
 
         jtbl_Carrito.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -465,7 +616,9 @@ public class GenerarVenta extends javax.swing.JFrame {
 
         jLabel16.setText("Número de Operación:");
 
-        jtxt_NumeroOperacion.setText("0000");
+        jLabel18.setText("Fecha:");
+
+        jlbl_Fecha.setText("xx/xx/xxxx");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -479,7 +632,11 @@ public class GenerarVenta extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbl_Total))
+                        .addComponent(jlbl_Total)
+                        .addGap(124, 124, 124)
+                        .addComponent(jLabel18)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlbl_Fecha))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -509,7 +666,9 @@ public class GenerarVenta extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
-                    .addComponent(jlbl_Total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jlbl_Total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel18)
+                    .addComponent(jlbl_Fecha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
@@ -530,10 +689,25 @@ public class GenerarVenta extends javax.swing.JFrame {
         );
 
         jbtn_IngresarCompra.setText("Ingresar Compra");
+        jbtn_IngresarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_IngresarCompraActionPerformed(evt);
+            }
+        });
 
         jbtn_CancelarCompra.setText("Cancelar Compra");
+        jbtn_CancelarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_CancelarCompraActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Volver al Menú");
+        jbtn_Volver.setText("Volver al Menú");
+        jbtn_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_VolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -550,7 +724,7 @@ public class GenerarVenta extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jbtn_CancelarCompra)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(jbtn_Volver)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -566,7 +740,7 @@ public class GenerarVenta extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbtn_IngresarCompra)
                             .addComponent(jbtn_CancelarCompra)
-                            .addComponent(jButton3))
+                            .addComponent(jbtn_Volver))
                         .addGap(12, 12, 12)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -661,6 +835,8 @@ public class GenerarVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_CalcularActionPerformed
 
     private void jbtn_AgregarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_AgregarCarroActionPerformed
+        //nos aseguramos de que este actualizado los valores de producto
+        this.jbtn_Calcular.doClick();
         // iniciamos variables
         String cantidad, subtotal, nombre;
         int cant, subt;
@@ -677,11 +853,62 @@ public class GenerarVenta extends javax.swing.JFrame {
             Producto producto = pc.buscarProducto(nombre);
             //agregamos el producto al carrito
             agregarProducto(producto, cant, subt);
-        
+            //dato = (Integer) this.jtbl_Todos.getValueAt(row, 0);
+            //lo sumamos al total
+            total = total + subt;
+            //actualizamos en la vista
+            this.jlbl_Total.setText(total+"");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_jbtn_AgregarCarroActionPerformed
+
+    private void jbtn_QuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_QuitarActionPerformed
+        int row, subt;
+        try {
+            //seleccionamo la fila de la tabla que haya sido seleccionada, 
+            //getselectedrow nos devolvera el nro de la fila, si no hay ninguna sera -1
+            row = this.jtbl_Carrito.getSelectedRow();
+            //luego obtenemos el dato que esta en la tabla en este caso el titulo, que esta en posicion 1
+            //recordar que la posicion parte desde  0 (ID)
+            //esto con getValueAt(fila, columna)
+            if(row >=0){
+                //actualizamos primero el valor de total
+                subt = (Integer) this.jtbl_Carrito.getValueAt(row, 4);
+                total = total - subt;
+                //actualizamos en la vista
+                this.jlbl_Total.setText(total+"");
+                //creamos una copia de la tabla inicial para trabajar
+                DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Carrito.getModel();
+                modelo.removeRow(row);
+                System.out.println(modelo.getRowCount());
+            }else{
+                JOptionPane.showMessageDialog(this, "No hay Producto en el carrito", "Validación", 2);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_jbtn_QuitarActionPerformed
+
+    private void jbtn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_VolverActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jbtn_VolverActionPerformed
+
+    private void jbtn_CancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_CancelarCompraActionPerformed
+        // TODO add your handling code here:
+        vaciarCarrito();
+        total = 0;
+        this.jlbl_Total.setText(total+"");
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Carrito.getModel();
+        System.out.println(modelo.getRowCount());
+    }//GEN-LAST:event_jbtn_CancelarCompraActionPerformed
+
+    private void jbtn_IngresarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_IngresarCompraActionPerformed
+        // usamos el metodo para generar la venta
+        generarVenta();
+    }//GEN-LAST:event_jbtn_IngresarCompraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -721,7 +948,6 @@ public class GenerarVenta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bntGroupTipoDocumento;
     private javax.swing.ButtonGroup btnGroupMedioPago;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -731,6 +957,7 @@ public class GenerarVenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -750,10 +977,12 @@ public class GenerarVenta extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_CancelarCompra;
     private javax.swing.JButton jbtn_IngresarCompra;
     private javax.swing.JButton jbtn_Quitar;
+    private javax.swing.JButton jbtn_Volver;
     private javax.swing.JComboBox<String> jcb_Cliente;
     private javax.swing.JComboBox<String> jcb_Producto;
     private javax.swing.JLabel jlbl_Apellido;
     private javax.swing.JLabel jlbl_Dv;
+    private javax.swing.JLabel jlbl_Fecha;
     private javax.swing.JLabel jlbl_Nombre;
     private javax.swing.JLabel jlbl_PrecioUnitario;
     private javax.swing.JLabel jlbl_Rut;

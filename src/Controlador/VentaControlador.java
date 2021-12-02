@@ -18,9 +18,10 @@ import java.util.List;
 /**
  *
  * @author Francisco Castillo
- * @version 29-11-2021
+ * @version 02-12-2021
  * 28-11: Metodos Listar
  * 29-11: Metodo Agregar
+ * 02-12: metofo obtener ultima venta, su id
  */
 public class VentaControlador {
     
@@ -38,6 +39,7 @@ public class VentaControlador {
             
             stmt.setInt(1, venta.getTotal());
             stmt.setDate(2, new java.sql.Date(date.getTime()));
+            //stmt.setDate(2, (java.sql.Date) venta.getFecha());
             stmt.setString(3, venta.getMedio_pago());
             stmt.setString(4, venta.getTipo_documento());
             stmt.setInt(5, venta.getNumero_operacion());
@@ -171,5 +173,35 @@ public class VentaControlador {
             System.out.println("Error al Listar Venta (EXCEPTION): " + e.getMessage());
         }
         return lista;
+    }
+    
+    //Metodo para obtener la ultima venta ingresada
+    public int ultimaVenta(){
+        int id_venta=0;
+        //Venta v = new Venta();
+        try {
+            Conexion con = new Conexion();
+            java.sql.Connection cnx = con.obtenerConexion();
+            
+            String query = "SELECT MAX(id_venta) AS ultimoid FROM venta";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                id_venta= rs.getInt("ultimoid");
+                //v.setId_venta(rs.getInt("ultimoid"));
+            }
+            //id_venta = v.getId_venta();
+            
+            rs.close();
+            stmt.close();
+            cnx.close();
+                 
+        } catch (Exception e) {
+            System.out.println("Error SQL al buscar Cliente"+ e.getMessage());
+            
+        }
+        return id_venta;
     }
 }
