@@ -5,8 +5,11 @@
  */
 package Vista;
 
+import Controlador.ClienteControlador;
 import Controlador.VentaControlador;
+import Modelo.Cliente;
 import Modelo.Venta;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -32,6 +35,7 @@ public class ListarVentas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         try {
             llenarTablaTodos();
+            llenarListaNombres();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -84,6 +88,136 @@ public class ListarVentas extends javax.swing.JFrame {
             modelo.addRow(new Object[]{idventa, total, fechac, medio_pago, tipo_documento, numero_operacion, rut_cliente});
         }
     }
+    
+    //Metodo para llenar el jcombobox con los nombres de los clientes
+    private void llenarListaNombres(){
+        //iniciamos variables
+        String nombre;
+        //creamos obj del controlador
+        ClienteControlador cc = new ClienteControlador();
+        //limpiamos el combobox
+        this.jcb_Clientes.removeAllItems();
+        //llenamos lista de clientes
+        List<Cliente> lista = cc.listarTodosClientesNombre();
+        //recorremos la lista y llenamos el combobox
+        for(Cliente c : lista){
+            nombre = c.getNombre_cliente();
+            this.jcb_Clientes.addItem(nombre);
+        }
+    }
+    
+    //Metodo para obtener el rut de un cliente
+    private int obtenerRut(String nombre){
+        //inicializamos variables
+        int rut=0;
+        //Creamos obj del controlador
+        ClienteControlador cc = new ClienteControlador();
+        //Creamos obj del modelo
+        Cliente cliente = cc.buscarClienteNombre(nombre);
+        rut = cliente.getRut();
+        
+        return rut;
+    }
+    
+    //Metodo para llenar la tabla filtrado por un nombre de cliente
+    private void llenarTablaCliente(int rut){
+       //iniciamos variables
+        int idventa, total, numero_operacion, rut_cliente;
+        String medio_pago, tipo_documento, fechac;
+        Date fecha;
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+        //creamos obj del controlador
+        VentaControlador vc = new VentaControlador();
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Cliente.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
+        //llenamos la lista con el metodo del controlador
+        List<Venta> lista = vc.listarPorRut(rut);
+        //validamos si la tabla no esta vacia, y si cliente tiene ventas asociadas
+        if(lista.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Cliente No tiene Ventas Registradas ", "Validación", 2);
+        }
+        //recorremos la lista y llenamos la tabla
+        for(Venta v : lista){
+            idventa = v.getId_venta();
+            total = v.getTotal();
+            fecha = v.getFecha();
+            medio_pago = v.getMedio_pago();
+            tipo_documento = v.getTipo_documento();
+            numero_operacion = v.getNumero_operacion();
+            rut_cliente = v.getRut_cliente();
+            
+            if(medio_pago.equals("E")){
+                medio_pago = "Efectivo";
+            }else if(medio_pago.equals("D")){
+                medio_pago = "Debito";
+            }else if(medio_pago.equals("C")){
+                medio_pago = "Credito";
+            }else{
+                medio_pago = "Tranferencia";
+            }
+            
+            if(tipo_documento.equals("B")){
+                tipo_documento = "Boleta";
+            }else{
+                tipo_documento = "Factura";
+            }
+            fechac =   formatoFecha.format(fecha)+"";
+            
+            modelo.addRow(new Object[]{idventa, total, fechac, medio_pago, tipo_documento, numero_operacion, rut_cliente});
+        } 
+    }
+    
+    //Metodo para llenar la tabla filtrado por fecha
+    private void llenarTablaFecha(Date fechaConsulta){
+       //iniciamos variables
+        int idventa, total, numero_operacion, rut_cliente;
+        String medio_pago, tipo_documento, fechac;
+        Date fecha;
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+        //creamos obj del controlador
+        VentaControlador vc = new VentaControlador();
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Fecha.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
+        //llenamos la lista con el metodo del controlador
+        List<Venta> lista = vc.listarPorFecha(fechaConsulta);
+        //validamos si la tabla no esta vacia, hay ventas para esa fecha
+        if(lista.isEmpty()){
+            JOptionPane.showMessageDialog(this, "No hay Ventas registradas para esa Fecha", "Validación", 2);
+        }
+        //recorremos la lista y llenamos la tabla
+        for(Venta v : lista){
+            idventa = v.getId_venta();
+            total = v.getTotal();
+            fecha = v.getFecha();
+            medio_pago = v.getMedio_pago();
+            tipo_documento = v.getTipo_documento();
+            numero_operacion = v.getNumero_operacion();
+            rut_cliente = v.getRut_cliente();
+            
+            if(medio_pago.equals("E")){
+                medio_pago = "Efectivo";
+            }else if(medio_pago.equals("D")){
+                medio_pago = "Debito";
+            }else if(medio_pago.equals("C")){
+                medio_pago = "Credito";
+            }else{
+                medio_pago = "Tranferencia";
+            }
+            
+            if(tipo_documento.equals("B")){
+                tipo_documento = "Boleta";
+            }else{
+                tipo_documento = "Factura";
+            }
+            fechac =   formatoFecha.format(fecha)+"";
+            
+            modelo.addRow(new Object[]{idventa, total, fechac, medio_pago, tipo_documento, numero_operacion, rut_cliente});
+        } 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,7 +238,7 @@ public class ListarVentas extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtbl_Cliente = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcb_Clientes = new javax.swing.JComboBox<>();
         jbtn_ListarCliente = new javax.swing.JButton();
         jbtn_LimpiarCliente = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -227,11 +361,21 @@ public class ListarVentas extends javax.swing.JFrame {
 
         jLabel2.setText("Seleccione Cliente:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "juan", "jorge", "pedro", "pablo", "diego", "denisse", "cesar", "cristian" }));
+        jcb_Clientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "juan", "jorge", "pedro", "pablo", "diego", "denisse", "cesar", "cristian" }));
 
         jbtn_ListarCliente.setText("Listar");
+        jbtn_ListarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_ListarClienteActionPerformed(evt);
+            }
+        });
 
         jbtn_LimpiarCliente.setText("Limpiar");
+        jbtn_LimpiarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_LimpiarClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -243,7 +387,7 @@ public class ListarVentas extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcb_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)
                         .addComponent(jbtn_ListarCliente)
                         .addGap(18, 18, 18)
@@ -262,7 +406,7 @@ public class ListarVentas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcb_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtn_ListarCliente)
                     .addComponent(jbtn_LimpiarCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -314,17 +458,21 @@ public class ListarVentas extends javax.swing.JFrame {
 
         jLabel3.setText("Ingrese Fecha:");
 
-        jtxt_Dia.setText("Día");
-
         jLabel4.setText("Formato Dia/Mes/Año");
 
         jbtn_ListarFecha.setText("Listar");
+        jbtn_ListarFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_ListarFechaActionPerformed(evt);
+            }
+        });
 
         jbtn_LimpiarFecha.setText("Limpiar");
-
-        jtxt_Mes.setText("Mes");
-
-        jtxt_Ano.setText("Año");
+        jbtn_LimpiarFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_LimpiarFechaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -490,6 +638,73 @@ public class ListarVentas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jbtn_VolverActionPerformed
 
+    private void jbtn_ListarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ListarClienteActionPerformed
+        //inicializamos variables
+        String nombre;
+        int rut;
+        try {
+            //obtenemos el nombre del combobox seleccionado
+        nombre = (String) this.jcb_Clientes.getSelectedItem();
+        //obtenemos el rut del cliente seleccionado
+        rut = obtenerRut(nombre);
+        //llenamos la tabla
+        llenarTablaCliente(rut);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        
+    }//GEN-LAST:event_jbtn_ListarClienteActionPerformed
+
+    private void jbtn_LimpiarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_LimpiarClienteActionPerformed
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Cliente.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
+    }//GEN-LAST:event_jbtn_LimpiarClienteActionPerformed
+
+    private void jbtn_ListarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_ListarFechaActionPerformed
+        //Rescatamos datos
+        String dia, mes, ano, fechaf;
+        dia = this.jtxt_Dia.getText();
+        mes = this.jtxt_Mes.getText();
+        ano = this.jtxt_Ano.getText();
+        //vemos que no hayan datos sin llenar
+        if(dia.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese dia", "Validacion", 2);
+            this.jtxt_Dia.requestFocus();
+            return;
+        }
+        if(mes.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese mes", "Validacion", 2);
+            this.jtxt_Mes.requestFocus();
+            return;
+        }
+        if(ano.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese año", "Validacion", 2);
+            this.jtxt_Ano.requestFocus();
+            return;
+        }
+        //armamos la fecha
+        fechaf = dia+"/"+mes+"/"+ano;
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date fecha=null;
+        try {
+            fecha = formato.parse(fechaf);
+        } catch (ParseException e) {
+            System.out.println("Error de actualización de fecha " + e.getMessage());
+        }
+        //llenamos la tabla
+        llenarTablaFecha(fecha);
+    }//GEN-LAST:event_jbtn_ListarFechaActionPerformed
+
+    private void jbtn_LimpiarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_LimpiarFechaActionPerformed
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Fecha.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
+    }//GEN-LAST:event_jbtn_LimpiarFechaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -526,7 +741,6 @@ public class ListarVentas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -546,6 +760,7 @@ public class ListarVentas extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_VerDCFecha;
     private javax.swing.JButton jbtn_VerDCTodos;
     private javax.swing.JButton jbtn_Volver;
+    private javax.swing.JComboBox<String> jcb_Clientes;
     private javax.swing.JTable jtbl_Cliente;
     private javax.swing.JTable jtbl_Fecha;
     private javax.swing.JTable jtbl_Todos;

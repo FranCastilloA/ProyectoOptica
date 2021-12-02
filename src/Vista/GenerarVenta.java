@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import Controlador.ClienteControlador;
+import Modelo.Cliente;
+import java.util.List;
+
 /**
  *
  * @author Neotemplar-R480
@@ -18,6 +22,27 @@ public class GenerarVenta extends javax.swing.JFrame {
         initComponents();
         //inicializa la ventana en el centrol
         this.setLocationRelativeTo(null);
+        try {
+            llenarListaNombres();
+        } catch (Exception e) {
+        }
+    }
+    
+    //Metodo para llenar el jcombobox con los nombres de los clientes
+    private void llenarListaNombres(){
+        //iniciamos variables
+        String nombre;
+        //creamos obj del controlador
+        ClienteControlador cc = new ClienteControlador();
+        //limpiamos el combobox
+        this.jcb_Cliente.removeAllItems();
+        //llenamos lista de clientes
+        List<Cliente> lista = cc.listarTodosClientesNombre();
+        //recorremos la lista y llenamos el combobox
+        for(Cliente c : lista){
+            nombre = c.getNombre_cliente();
+            this.jcb_Cliente.addItem(nombre);
+        }
     }
 
     /**

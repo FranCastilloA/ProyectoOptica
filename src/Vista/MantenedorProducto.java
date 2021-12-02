@@ -7,7 +7,7 @@ package Vista;
 
 /**
  *
- * @author Neotemplar-R480
+ * @author abarr
  */
 public class MantenedorProducto extends javax.swing.JFrame {
 
@@ -16,6 +16,8 @@ public class MantenedorProducto extends javax.swing.JFrame {
      */
     public MantenedorProducto() {
         initComponents();
+        //inicializa la ventana en el centrol
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -29,8 +31,6 @@ public class MantenedorProducto extends javax.swing.JFrame {
 
         jtpMantenedorProducto = new javax.swing.JTabbedPane();
         jpAgregarProducto = new javax.swing.JPanel();
-        jlID = new javax.swing.JLabel();
-        jtxtID = new javax.swing.JTextField();
         jlNomProduc = new javax.swing.JLabel();
         jtxtNomProduc = new javax.swing.JTextField();
         jlTipProduc = new javax.swing.JLabel();
@@ -43,7 +43,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
         jtxtCantidad = new javax.swing.JTextField();
         jlDispProduc = new javax.swing.JLabel();
         jbtnGuardar = new javax.swing.JButton();
-        jbtnCancelar = new javax.swing.JButton();
+        jbtnLimpiar = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
         jpListarProducto = new javax.swing.JPanel();
@@ -97,15 +97,13 @@ public class MantenedorProducto extends javax.swing.JFrame {
 
         jpAgregarProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Agregar Producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
 
-        jlID.setText("ID Producto:");
+        jlNomProduc.setText("Nombre Producto:");
 
-        jtxtID.addActionListener(new java.awt.event.ActionListener() {
+        jtxtNomProduc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtIDActionPerformed(evt);
+                jtxtNomProducActionPerformed(evt);
             }
         });
-
-        jlNomProduc.setText("Nombre Producto:");
 
         jlTipProduc.setText("Tipo Producto:");
 
@@ -113,7 +111,11 @@ public class MantenedorProducto extends javax.swing.JFrame {
 
         jlDescripProduc.setText("Descripción:");
 
-        jtxtDescripProduc.setText("hola");
+        jtxtDescripProduc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtDescripProducActionPerformed(evt);
+            }
+        });
 
         jlPrecioProduc.setText("Precio unitario ($):");
 
@@ -124,8 +126,8 @@ public class MantenedorProducto extends javax.swing.JFrame {
         jbtnGuardar.setBackground(new java.awt.Color(0, 153, 153));
         jbtnGuardar.setText("Guardar");
 
-        jbtnCancelar.setBackground(new java.awt.Color(255, 255, 255));
-        jbtnCancelar.setText("Cancelar");
+        jbtnLimpiar.setBackground(new java.awt.Color(255, 255, 255));
+        jbtnLimpiar.setText("Limpiar");
 
         jLabel8.setForeground(new java.awt.Color(153, 153, 153));
         jLabel8.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021");
@@ -138,7 +140,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
                 .addGap(95, 95, 95)
                 .addComponent(jbtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100))
             .addGroup(jpAgregarProductoLayout.createSequentialGroup()
                 .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +149,6 @@ public class MantenedorProducto extends javax.swing.JFrame {
                         .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jlDispProduc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jlCantProduc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jlNomProduc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jlTipProduc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jlDescripProduc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -156,7 +157,6 @@ public class MantenedorProducto extends javax.swing.JFrame {
                         .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jtxtNomProduc, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jtxtID, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jcomboxTipProduc, 0, 230, Short.MAX_VALUE)
                                 .addComponent(jtxtDescripProduc)
                                 .addComponent(jtxtPrecio)
@@ -170,11 +170,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
         jpAgregarProductoLayout.setVerticalGroup(
             jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpAgregarProductoLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlID)
-                    .addComponent(jtxtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlNomProduc)
                     .addComponent(jtxtNomProduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -201,8 +197,8 @@ public class MantenedorProducto extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnGuardar)
-                    .addComponent(jbtnCancelar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                    .addComponent(jbtnLimpiar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -619,10 +615,6 @@ public class MantenedorProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtxtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtIDActionPerformed
-
     private void jbtnBuscarTPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarTPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnBuscarTPActionPerformed
@@ -638,6 +630,14 @@ public class MantenedorProducto extends javax.swing.JFrame {
     private void jcomboxTPbuscar_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomboxTPbuscar_eliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcomboxTPbuscar_eliminarActionPerformed
+
+    private void jtxtNomProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtNomProducActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtNomProducActionPerformed
+
+    private void jtxtDescripProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtDescripProducActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtDescripProducActionPerformed
 
     /**
      * @param args the command line arguments
@@ -698,8 +698,8 @@ public class MantenedorProducto extends javax.swing.JFrame {
     private javax.swing.JButton jbtnBuscarNP;
     private javax.swing.JButton jbtnBuscarTP;
     private javax.swing.JButton jbtnBuscar_Eliminar;
-    private javax.swing.JButton jbtnCancelar;
     private javax.swing.JButton jbtnGuardar;
+    private javax.swing.JButton jbtnLimpiar;
     private javax.swing.JButton jbtnSalirListar;
     private javax.swing.JCheckBox jcbDispModificar;
     private javax.swing.JComboBox<String> jcomboxBuscarTipProduc;
@@ -709,7 +709,6 @@ public class MantenedorProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jlCantProduc;
     private javax.swing.JLabel jlDescripProduc;
     private javax.swing.JLabel jlDispProduc;
-    private javax.swing.JLabel jlID;
     private javax.swing.JLabel jlNomProduc;
     private javax.swing.JLabel jlPrecioProduc;
     private javax.swing.JLabel jlTipProduc;
@@ -731,7 +730,6 @@ public class MantenedorProducto extends javax.swing.JFrame {
     private javax.swing.JTextField jtxtCantidad;
     private javax.swing.JTextField jtxtDPmodificar;
     private javax.swing.JTextField jtxtDescripProduc;
-    private javax.swing.JTextField jtxtID;
     private javax.swing.JTextField jtxtIDmodifar;
     private javax.swing.JTextField jtxtNPmodificar;
     private javax.swing.JTextField jtxtNomProduc;

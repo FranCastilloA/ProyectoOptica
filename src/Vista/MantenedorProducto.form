@@ -73,7 +73,7 @@
                       <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
                       <Component id="jbtnGuardar" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jbtnCancelar" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="jbtnLimpiar" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -83,7 +83,6 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jlDispProduc" max="32767" attributes="0"/>
                                   <Component id="jlCantProduc" max="32767" attributes="0"/>
-                                  <Component id="jlID" max="32767" attributes="0"/>
                                   <Component id="jlNomProduc" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jlTipProduc" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jlDescripProduc" alignment="0" max="32767" attributes="0"/>
@@ -93,7 +92,6 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="jtxtNomProduc" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jtxtID" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jcomboxTipProduc" pref="230" max="32767" attributes="0"/>
                                       <Component id="jtxtDescripProduc" max="32767" attributes="0"/>
                                       <Component id="jtxtPrecio" max="32767" attributes="0"/>
@@ -114,12 +112,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jlID" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtxtID" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jlNomProduc" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jtxtNomProduc" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -152,31 +145,24 @@
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jbtnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jbtnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbtnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="23" max="32767" attributes="0"/>
+                      <EmptySpace pref="55" max="32767" attributes="0"/>
                       <Component id="jLabel8" min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jlID">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="ID Producto:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jtxtID">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtIDActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="jlNomProduc">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nombre Producto:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtxtNomProduc">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtNomProducActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jlTipProduc">
               <Properties>
@@ -206,9 +192,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtxtDescripProduc">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="hola"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtDescripProducActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jlPrecioProduc">
               <Properties>
@@ -237,12 +223,12 @@
                 <Property name="text" type="java.lang.String" value="Guardar"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jbtnCancelar">
+            <Component class="javax.swing.JButton" name="jbtnLimpiar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Cancelar"/>
+                <Property name="text" type="java.lang.String" value="Limpiar"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox1">
