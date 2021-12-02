@@ -5,6 +5,9 @@
  */
 package Vista;
 import javax.swing.JOptionPane;
+import Controlador.ProductoControlador;
+import Modelo.Producto;
+        
 
 /**
  *
@@ -680,25 +683,25 @@ public class MantenedorProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
-        //Guardar los datos ingresados
-        String nombreProducto = this.jtxtNomProduc.getText();
-        int tipoProducto = this.jcomboxTipProduc.getSelectedIndex();
+        //Rescatar los datos ingresados
+        String nombre_producto = this.jtxtNomProduc.getText();
+        String tipo_producto = (String) this.jcomboxTipProduc.getSelectedItem();
         String descripcion = this.jtxtDescripProduc.getText();
         String precio_str  = this.jtxtPrecio.getText();
         String cantidad_str = this.jtxtCantidad.getText();
         Boolean disponible = this.jCheckBox1.isSelected();
         
         //Validación de que esten completos los datos
-        if (nombreProducto.isEmpty()) {
+        if (nombre_producto.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese Nombre del Producto", "Validacion", 2);
             this.jtxtNomProduc.requestFocus();
             return;
         }
-//        if (tipoProducto.isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Ingrese dv", "Validacion", 2);
-//            this.jcomboxTipProduc.requestFocus();
-//            return;
-//        }
+        if (tipo_producto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Seleccione Tipo de Producto", "Validacion", 2);
+            this.jcomboxTipProduc.requestFocus();
+            return;
+        }
         if (descripcion.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese Descripción del Producto", "Validacion", 2);
             this.jtxtDescripProduc.requestFocus();
@@ -719,6 +722,24 @@ public class MantenedorProducto extends javax.swing.JFrame {
         precio = Integer.parseInt(precio_str);
         cantidad = Integer.parseInt(cantidad_str);
         
+        //Guardar datos del Producto
+        Producto producto= new Producto();
+        producto.setNombre_producto(nombre_producto);
+        producto.setTipo_producto(tipo_producto);
+        producto.setDescripcion(descripcion);
+        producto.setPrecio(precio);
+        producto.setCantidad(cantidad);
+        producto.setDisponible(disponible);
+//
+        ProductoControlador cc = new ProductoControlador();
+        try {
+            if (cc.agregarProducto(producto)) {
+            JOptionPane.showMessageDialog(this, "Producto ingresado!", "Ingreso", 1);
+        } else {
+            JOptionPane.showMessageDialog(this, "Producto no se pudo ingresar", "Validacion", 1);
+        }
+        } catch (Exception e) {
+        }                   
     }//GEN-LAST:event_jbtnGuardarActionPerformed
 
     /**
