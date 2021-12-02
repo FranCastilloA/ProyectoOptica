@@ -48,7 +48,7 @@ public class ClienteControlador {
             Conexion con = new Conexion();
             java.sql.Connection cnx = con.obtenerConexion();
 
-            String query = "UPDATE cliente set nombre_cliente=?, apellido=?, telefono=?, email=?, activo=? WHERE rut=? AND activo=1";
+            String query = "UPDATE cliente set nombre_cliente=?, apellido=?, telefono=?, email=?, activo=? WHERE rut=?";
             PreparedStatement stmt = cnx.prepareStatement(query);
 
             stmt.setString(1, cliente.getNombre_cliente());

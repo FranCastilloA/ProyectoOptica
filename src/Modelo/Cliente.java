@@ -1,7 +1,7 @@
 package Modelo;
 /**
  *
- * @author Neotemplar-R480
+ * @author Cristian Gonzalez
  */
 public class Cliente {
 

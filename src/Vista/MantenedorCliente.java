@@ -4,7 +4,6 @@ import Controlador.ClienteControlador;
 import Modelo.Cliente;
 import java.util.List;
 import javax.swing.JOptionPane;
-import static javax.swing.UIManager.getString;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -124,6 +123,14 @@ public class MantenedorCliente extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jtxt_buscar_listar = new javax.swing.JTextField();
+        jbtn_salir_listar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtbl_clientes_listar = new javax.swing.JTable();
+        jbtn_buscar_listar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jbtn_salir = new javax.swing.JButton();
@@ -142,14 +149,6 @@ public class MantenedorCliente extends javax.swing.JFrame {
         jbtn_limpiar = new javax.swing.JButton();
         jLabel44 = new javax.swing.JLabel();
         jtxt_email_añadir = new javax.swing.JTextField();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jtxt_buscar_listar = new javax.swing.JTextField();
-        jbtn_salir_listar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtbl_clientes_listar = new javax.swing.JTable();
-        jbtn_buscar_listar = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jtxt_buscar_modificar = new javax.swing.JTextField();
@@ -164,7 +163,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jbtn_eliminar1 = new javax.swing.JButton();
+        jbtn_modificar = new javax.swing.JButton();
         jtxt_rut_modificar = new javax.swing.JTextField();
         jtxt_dv_modificar = new javax.swing.JTextField();
         jtxt_nombre_modificar = new javax.swing.JTextField();
@@ -317,9 +316,139 @@ public class MantenedorCliente extends javax.swing.JFrame {
         jTabbedPane1.setBackground(new java.awt.Color(204, 204, 204));
         jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
 
+        jPanel8.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Ingrese Apellido");
+
+        jtxt_buscar_listar.setBackground(new java.awt.Color(255, 255, 255));
+        jtxt_buscar_listar.setForeground(new java.awt.Color(0, 0, 0));
+        jtxt_buscar_listar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtxt_buscar_listarFocusGained(evt);
+            }
+        });
+        jtxt_buscar_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxt_buscar_listarActionPerformed(evt);
+            }
+        });
+
+        jbtn_salir_listar.setBackground(new java.awt.Color(204, 204, 204));
+        jbtn_salir_listar.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_salir_listar.setText("Salir");
+        jbtn_salir_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_salir_listarActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021 ");
+
+        jtbl_clientes_listar.setBackground(new java.awt.Color(255, 255, 255));
+        jtbl_clientes_listar.setForeground(new java.awt.Color(0, 0, 0));
+        jtbl_clientes_listar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Rut", "Dv", "Nombre", "Apellido", "Telefono", "Email"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtbl_clientes_listar.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jtbl_clientes_listar);
+        if (jtbl_clientes_listar.getColumnModel().getColumnCount() > 0) {
+            jtbl_clientes_listar.getColumnModel().getColumn(0).setResizable(false);
+            jtbl_clientes_listar.getColumnModel().getColumn(0).setPreferredWidth(80);
+            jtbl_clientes_listar.getColumnModel().getColumn(1).setResizable(false);
+            jtbl_clientes_listar.getColumnModel().getColumn(1).setPreferredWidth(30);
+            jtbl_clientes_listar.getColumnModel().getColumn(2).setResizable(false);
+            jtbl_clientes_listar.getColumnModel().getColumn(2).setPreferredWidth(100);
+            jtbl_clientes_listar.getColumnModel().getColumn(3).setResizable(false);
+            jtbl_clientes_listar.getColumnModel().getColumn(3).setPreferredWidth(100);
+            jtbl_clientes_listar.getColumnModel().getColumn(4).setResizable(false);
+            jtbl_clientes_listar.getColumnModel().getColumn(4).setPreferredWidth(80);
+            jtbl_clientes_listar.getColumnModel().getColumn(5).setResizable(false);
+            jtbl_clientes_listar.getColumnModel().getColumn(5).setPreferredWidth(150);
+        }
+
+        jbtn_buscar_listar.setText("Buscar");
+        jbtn_buscar_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_buscar_listarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addGap(0, 8, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtxt_buscar_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtn_buscar_listar))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jbtn_salir_listar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jtxt_buscar_listar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtn_buscar_listar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtn_salir_listar)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
+        );
+
+        jTabbedPane1.addTab("Listar", jPanel8);
+
         jPanel7.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021 ");
 
         jbtn_salir.setBackground(new java.awt.Color(204, 204, 204));
@@ -442,20 +571,17 @@ public class MantenedorCliente extends javax.swing.JFrame {
                             .addComponent(jLabel42)
                             .addComponent(jLabel41)
                             .addComponent(jLabel39))
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jtxt_apellido_añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel11Layout.createSequentialGroup()
-                                        .addComponent(jtxt_rut_añadir)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel40)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jtxt_dv_añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jtxt_nombre_añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jtxt_apellido_añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel11Layout.createSequentialGroup()
+                                    .addComponent(jtxt_rut_añadir)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel40)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jtxt_dv_añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jtxt_nombre_añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel11Layout.createSequentialGroup()
@@ -508,161 +634,31 @@ public class MantenedorCliente extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbtn_salir)
-                        .addGap(59, 59, 59)
+                        .addGap(134, 134, 134)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
+                        .addContainerGap()
+                        .addComponent(jbtn_salir)
+                        .addGap(27, 27, 27)
                         .addComponent(jLabel4)))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(237, 237, 237)
-                        .addComponent(jbtn_salir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addContainerGap(72, Short.MAX_VALUE)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addComponent(jLabel4)
-                .addContainerGap())
+                        .addComponent(jbtn_salir)
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(38, 38, 38))))
         );
 
         jTabbedPane1.addTab("Añadir", jPanel7);
-
-        jPanel8.setBackground(new java.awt.Color(204, 204, 204));
-
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Ingrese Apellido");
-
-        jtxt_buscar_listar.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_buscar_listar.setForeground(new java.awt.Color(0, 0, 0));
-        jtxt_buscar_listar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jtxt_buscar_listarFocusGained(evt);
-            }
-        });
-        jtxt_buscar_listar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxt_buscar_listarActionPerformed(evt);
-            }
-        });
-
-        jbtn_salir_listar.setBackground(new java.awt.Color(204, 204, 204));
-        jbtn_salir_listar.setForeground(new java.awt.Color(0, 0, 0));
-        jbtn_salir_listar.setText("Salir");
-        jbtn_salir_listar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_salir_listarActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021 ");
-
-        jtbl_clientes_listar.setBackground(new java.awt.Color(255, 255, 255));
-        jtbl_clientes_listar.setForeground(new java.awt.Color(0, 0, 0));
-        jtbl_clientes_listar.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Rut", "Dv", "Nombre", "Apellido", "Telefono", "Email"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jtbl_clientes_listar.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jtbl_clientes_listar);
-        if (jtbl_clientes_listar.getColumnModel().getColumnCount() > 0) {
-            jtbl_clientes_listar.getColumnModel().getColumn(0).setResizable(false);
-            jtbl_clientes_listar.getColumnModel().getColumn(0).setPreferredWidth(80);
-            jtbl_clientes_listar.getColumnModel().getColumn(1).setResizable(false);
-            jtbl_clientes_listar.getColumnModel().getColumn(1).setPreferredWidth(30);
-            jtbl_clientes_listar.getColumnModel().getColumn(2).setResizable(false);
-            jtbl_clientes_listar.getColumnModel().getColumn(2).setPreferredWidth(100);
-            jtbl_clientes_listar.getColumnModel().getColumn(3).setResizable(false);
-            jtbl_clientes_listar.getColumnModel().getColumn(3).setPreferredWidth(100);
-            jtbl_clientes_listar.getColumnModel().getColumn(4).setResizable(false);
-            jtbl_clientes_listar.getColumnModel().getColumn(4).setPreferredWidth(80);
-            jtbl_clientes_listar.getColumnModel().getColumn(5).setResizable(false);
-            jtbl_clientes_listar.getColumnModel().getColumn(5).setPreferredWidth(150);
-        }
-
-        jbtn_buscar_listar.setText("Buscar");
-        jbtn_buscar_listar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_buscar_listarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jbtn_salir_listar))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(81, 81, 81)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(96, 96, 96)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtxt_buscar_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbtn_buscar_listar)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGap(0, 8, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtxt_buscar_listar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtn_buscar_listar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jbtn_salir_listar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("Listar", jPanel8);
 
         jPanel9.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -688,6 +684,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
         });
 
         jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel31.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021 ");
 
         jtbl_clientes_modificar.setModel(new javax.swing.table.DefaultTableModel(
@@ -759,12 +756,12 @@ public class MantenedorCliente extends javax.swing.JFrame {
         jLabel38.setForeground(new java.awt.Color(0, 0, 0));
         jLabel38.setText("Email");
 
-        jbtn_eliminar1.setBackground(new java.awt.Color(204, 204, 204));
-        jbtn_eliminar1.setForeground(new java.awt.Color(0, 0, 0));
-        jbtn_eliminar1.setText("Modificar");
-        jbtn_eliminar1.addActionListener(new java.awt.event.ActionListener() {
+        jbtn_modificar.setBackground(new java.awt.Color(204, 204, 204));
+        jbtn_modificar.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_modificar.setText("Modificar");
+        jbtn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_eliminar1ActionPerformed(evt);
+                jbtn_modificarActionPerformed(evt);
             }
         });
 
@@ -811,7 +808,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jchk_activo_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jbtn_eliminar1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbtn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -871,7 +868,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
                     .addComponent(jLabel38))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtn_eliminar1)
+                    .addComponent(jbtn_modificar)
                     .addComponent(jchk_activo_modificar))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
@@ -917,11 +914,11 @@ public class MantenedorCliente extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(34, 34, 34))
+                .addGap(40, 40, 40))
         );
 
         jTabbedPane1.addTab("Modificar", jPanel9);
@@ -949,6 +946,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
         });
 
         jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel32.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021 ");
 
         jtbl_clientes_eliminar.setModel(new javax.swing.table.DefaultTableModel(
@@ -1015,10 +1013,6 @@ public class MantenedorCliente extends javax.swing.JFrame {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jLabel32)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1031,11 +1025,14 @@ public class MantenedorCliente extends javax.swing.JFrame {
                                         .addComponent(jtxt_buscar_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(20, 20, 20)
                                         .addComponent(jbtn_buscar_eliminar))
-                                    .addComponent(jButton10)))
+                                    .addGroup(jPanel10Layout.createSequentialGroup()
+                                        .addComponent(jButton10)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel32))))
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addGap(240, 240, 240)
                                 .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 272, Short.MAX_VALUE))
+                        .addGap(0, 115, Short.MAX_VALUE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -1052,10 +1049,10 @@ public class MantenedorCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtn_eliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jButton10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel32)
-                .addGap(10, 10, 10))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton10)
+                    .addComponent(jLabel32))
+                .addGap(32, 32, 32))
         );
 
         jTabbedPane1.addTab("Eliminar", jPanel10);
@@ -1064,15 +1061,11 @@ public class MantenedorCliente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -1104,7 +1097,29 @@ public class MantenedorCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jbtn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_eliminarActionPerformed
-        // TODO add your handling code here:
+        
+        //Actualizamos el atributo "activo" a false para "eliminar" al cliente seleccionado.
+        Cliente cliente;
+        int fila, rut;
+        
+        ClienteControlador cc = new ClienteControlador();
+        
+        try{
+            fila = this.jtbl_clientes_modificar.getSelectedRow();
+            rut = (int) this.jtbl_clientes_modificar.getValueAt(fila,0);
+
+            cliente = cc.buscarClienteRut(rut);
+            
+            cliente.setActivo(false);
+            
+            cc.actualizarCliente(cliente);
+            
+            
+        }catch(Exception e){
+            System.out.println("e.getMessage");
+        }
+        
+        
     }//GEN-LAST:event_jbtn_eliminarActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -1161,7 +1176,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
         }    
     }//GEN-LAST:event_jbtn_buscar_eliminarActionPerformed
 
-    private void jbtn_eliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_eliminar1ActionPerformed
+    private void jbtn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_modificarActionPerformed
         //rescatamos los datos
         String rut_str = this.jtxt_rut_modificar.getText();
         String dv = this.jtxt_dv_modificar.getText();
@@ -1223,7 +1238,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Cliente no se pudo modificar", "Validacion", 1);
         }
-    }//GEN-LAST:event_jbtn_eliminar1ActionPerformed
+    }//GEN-LAST:event_jbtn_modificarActionPerformed
 
     private void jtxt_rut_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_rut_modificarActionPerformed
         // TODO add your handling code here:
@@ -1340,19 +1355,10 @@ public class MantenedorCliente extends javax.swing.JFrame {
         //iniciamos variables, controladores y la tabla
         int rut, telefono;
         String nombre, apellido, dv, email;
-        Boolean activo;
-
+        
         ClienteControlador cc = new ClienteControlador();
 
         DefaultTableModel modelo = (DefaultTableModel) this.jtbl_clientes_listar.getModel();
-//        try {
-//            apellido = this.jtxt_buscar_listar.getText();
-//            
-//            
-//        } catch (Exception e) {
-//            apellido = "0";
-//            
-//        }
 
         apellido = this.jtxt_buscar_listar.getText();
         modelo.setRowCount(0);
@@ -1424,10 +1430,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
             
         }catch(Exception e){
             System.out.println("e.getMessage");
-        }
-        
-        
-        
+        }    
     }//GEN-LAST:event_jtbl_clientes_modificarMouseClicked
 
     private void jbtn_buscar_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_buscar_modificarActionPerformed
@@ -1571,8 +1574,8 @@ public class MantenedorCliente extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_buscar_listar;
     private javax.swing.JButton jbtn_buscar_modificar;
     private javax.swing.JButton jbtn_eliminar;
-    private javax.swing.JButton jbtn_eliminar1;
     private javax.swing.JButton jbtn_limpiar;
+    private javax.swing.JButton jbtn_modificar;
     private javax.swing.JButton jbtn_salir;
     private javax.swing.JButton jbtn_salir_listar;
     private javax.swing.JCheckBox jchk_activo_modificar;
