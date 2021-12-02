@@ -1,6 +1,8 @@
 
 package Vista;
 
+import Controlador.UsuarioControlador;
+import Modelo.Usuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -158,26 +160,33 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_enviarActionPerformed
-        int tipo;
-        //tomamos lo ingresado
-        String usuario = this.jtxt_usuario.getText();
+        int tipo=0;
+        //Tomamos datos ingresados.
+        String user = this.jtxt_usuario.getText();
         String pass = this.jtxt_password.getText();
         
-        if (usuario.equalsIgnoreCase("admin") && pass.equals("admin1234")){
-            tipo = 1;
-        }else if (usuario.equalsIgnoreCase("vendedor") && pass.equals("venta1234")){
-            tipo = 2;
-        }else{
-            JOptionPane.showMessageDialog(this, "Usuario/Contraseña incorrectos", "Error", 1);
-            return;
-        }
+        Usuario usuario = new Usuario();
         
-        if (tipo==1){
-           MenuAdmin menuAd = new MenuAdmin();
-           menuAd.setVisible(true); 
-        }else if (tipo==2) {
-           MenuVendedor menuVen = new MenuVendedor();
-           menuVen.setVisible(true);  
+        //Buscamos el usuario correspondiente.
+        
+        UsuarioControlador uc = new UsuarioControlador();
+        
+        usuario = uc.buscarUsuario(user,pass);
+        
+        //Ocupamos su tipo para determinar a que menu se le envia.
+        switch (usuario.tipo_usuario) {
+            case 1:
+                MenuAdmin menuAd = new MenuAdmin();
+                menuAd.setVisible(true);
+                break;
+            case 2:
+                MenuVendedor menuVen = new MenuVendedor();
+                menuVen.setVisible(true);
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Combinacion usuario/contraseña incorrectos.", "Error", 1);
+                this.jtxt_usuario.requestFocus();
+                break;
         }
         
         

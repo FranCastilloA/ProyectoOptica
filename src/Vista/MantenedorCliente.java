@@ -1,10 +1,12 @@
 package Vista;
 // @author Cristian Gonzalez
+
 import Controlador.ClienteControlador;
 import Modelo.Cliente;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Cristian Gonzalez
@@ -44,7 +46,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
         List<Cliente> lista = cc.buscarTodosClientes();
 
         for (Cliente cliente : lista) {
-            if (cliente.getActivo() == true) {
+            if (cliente.getActivo()) {
                 rut = cliente.getRut();
                 dv = cliente.getDv();
                 nombre = cliente.getNombre_cliente();
@@ -70,11 +72,10 @@ public class MantenedorCliente extends javax.swing.JFrame {
             dv = cliente.getDv();
             nombre = cliente.getNombre_cliente();
             apellido = cliente.getApellido();
-                
+
             modelo.addRow(new Object[]{rut, dv, nombre, apellido});
         }
-        
-        
+
         //Y repetimos denuevo para la tabla eliminar.    
         cc = new ClienteControlador();
 
@@ -85,13 +86,15 @@ public class MantenedorCliente extends javax.swing.JFrame {
         lista = cc.buscarTodosClientes();
 
         for (Cliente cliente : lista) {
-            if (cliente.getActivo() == true) {
+            if (cliente.getActivo()) {
                 rut = cliente.getRut();
                 dv = cliente.getDv();
                 nombre = cliente.getNombre_cliente();
                 apellido = cliente.getApellido();
-                
-                modelo.addRow(new Object[]{rut, dv, nombre, apellido});
+                telefono = cliente.getTelefono();
+                email = cliente.getEmail();
+
+                modelo.addRow(new Object[]{rut, dv, nombre, apellido, telefono, email});
             }
         }
 
@@ -668,6 +671,11 @@ public class MantenedorCliente extends javax.swing.JFrame {
 
         jtxt_buscar_modificar.setBackground(new java.awt.Color(255, 255, 255));
         jtxt_buscar_modificar.setForeground(new java.awt.Color(0, 0, 0));
+        jtxt_buscar_modificar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtxt_buscar_modificarFocusGained(evt);
+            }
+        });
         jtxt_buscar_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxt_buscar_modificarActionPerformed(evt);
@@ -765,16 +773,18 @@ public class MantenedorCliente extends javax.swing.JFrame {
             }
         });
 
+        jtxt_rut_modificar.setEditable(false);
         jtxt_rut_modificar.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_rut_modificar.setForeground(new java.awt.Color(0, 0, 0));
+        jtxt_rut_modificar.setForeground(new java.awt.Color(102, 102, 102));
         jtxt_rut_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxt_rut_modificarActionPerformed(evt);
             }
         });
 
+        jtxt_dv_modificar.setEditable(false);
         jtxt_dv_modificar.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_dv_modificar.setForeground(new java.awt.Color(0, 0, 0));
+        jtxt_dv_modificar.setForeground(new java.awt.Color(102, 102, 102));
 
         jtxt_nombre_modificar.setBackground(new java.awt.Color(255, 255, 255));
         jtxt_nombre_modificar.setForeground(new java.awt.Color(0, 0, 0));
@@ -930,6 +940,11 @@ public class MantenedorCliente extends javax.swing.JFrame {
 
         jtxt_buscar_eliminar.setBackground(new java.awt.Color(255, 255, 255));
         jtxt_buscar_eliminar.setForeground(new java.awt.Color(0, 0, 0));
+        jtxt_buscar_eliminar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtxt_buscar_eliminarFocusGained(evt);
+            }
+        });
         jtxt_buscar_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxt_buscar_eliminarActionPerformed(evt);
@@ -1097,29 +1112,32 @@ public class MantenedorCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jbtn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_eliminarActionPerformed
-        
+
         //Actualizamos el atributo "activo" a false para "eliminar" al cliente seleccionado.
         Cliente cliente;
         int fila, rut;
-        
+
         ClienteControlador cc = new ClienteControlador();
-        
-        try{
-            fila = this.jtbl_clientes_modificar.getSelectedRow();
-            rut = (int) this.jtbl_clientes_modificar.getValueAt(fila,0);
+
+        try {
+            fila = this.jtbl_clientes_eliminar.getSelectedRow();
+            rut = (int) this.jtbl_clientes_eliminar.getValueAt(fila, 0);
 
             cliente = cc.buscarClienteRut(rut);
-            
+
             cliente.setActivo(false);
-            
+
             cc.actualizarCliente(cliente);
-            
-            
-        }catch(Exception e){
+
+            JOptionPane.showMessageDialog(this, "Cliente eliminado!", "Eliminar", 1);
+
+            llenarTablaClientes();
+
+        } catch (Exception e) {
             System.out.println("e.getMessage");
         }
-        
-        
+
+
     }//GEN-LAST:event_jbtn_eliminarActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -1127,7 +1145,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jbtn_buscar_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_buscar_eliminarActionPerformed
-                                                      
+
         //iniciamos variables, controladores y la tabla
         int rut, telefono;
         String nombre, apellido, dv, email;
@@ -1173,7 +1191,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
                     modelo.addRow(new Object[]{rut, dv, nombre, apellido, telefono, email});
                 }
             }
-        }    
+        }
     }//GEN-LAST:event_jbtn_buscar_eliminarActionPerformed
 
     private void jbtn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_modificarActionPerformed
@@ -1220,11 +1238,8 @@ public class MantenedorCliente extends javax.swing.JFrame {
         int rut, telefono;
         rut = Integer.parseInt(rut_str);
         telefono = Integer.parseInt(telefono_str);
-        
 
         //Validaciones extra.
-
-        
         
         
         
@@ -1232,9 +1247,10 @@ public class MantenedorCliente extends javax.swing.JFrame {
         Cliente cliente = new Cliente(rut, dv, nombre, apellido, telefono, email, activo);
 
         ClienteControlador cc = new ClienteControlador();
-               
+
         if (cc.actualizarCliente(cliente)) {
             JOptionPane.showMessageDialog(this, "Cliente modificado!", "Ingreso", 1);
+            llenarTablaClientes();
         } else {
             JOptionPane.showMessageDialog(this, "Cliente no se pudo modificar", "Validacion", 1);
         }
@@ -1288,12 +1304,14 @@ public class MantenedorCliente extends javax.swing.JFrame {
         int rut, telefono;
         rut = Integer.parseInt(rut_str);
         telefono = Integer.parseInt(telefono_str);
-        
 
         //Validaciones extra
-        
-        
-        
+        if (rut_str.length() != 8) {
+            JOptionPane.showMessageDialog(this, "Rut debe tener 8 digitos", "Validacion", 2);
+            this.jtxt_rut_añadir.requestFocus();
+            return;
+        }
+
         //Guardamos los datos del nuevo cliente.
         Cliente cliente = new Cliente(rut, dv, nombre, apellido, telefono, email, activo);
 
@@ -1355,7 +1373,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
         //iniciamos variables, controladores y la tabla
         int rut, telefono;
         String nombre, apellido, dv, email;
-        
+
         ClienteControlador cc = new ClienteControlador();
 
         DefaultTableModel modelo = (DefaultTableModel) this.jtbl_clientes_listar.getModel();
@@ -1411,15 +1429,15 @@ public class MantenedorCliente extends javax.swing.JFrame {
     private void jtbl_clientes_modificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbl_clientes_modificarMouseClicked
         Cliente cliente;
         int fila, rut;
-        
+
         ClienteControlador cc = new ClienteControlador();
-        
-        try{
+
+        try {
             fila = this.jtbl_clientes_modificar.getSelectedRow();
-            rut = (int) this.jtbl_clientes_modificar.getValueAt(fila,0);
+            rut = (int) this.jtbl_clientes_modificar.getValueAt(fila, 0);
 
             cliente = cc.buscarClienteRut(rut);
-            
+
             this.jtxt_rut_modificar.setText(String.valueOf(cliente.rut));
             this.jtxt_dv_modificar.setText(cliente.dv);
             this.jtxt_nombre_modificar.setText(cliente.nombre_cliente);
@@ -1427,17 +1445,16 @@ public class MantenedorCliente extends javax.swing.JFrame {
             this.jtxt_telefono_modificar.setText(String.valueOf(cliente.telefono));
             this.jtxt_email_modificar.setText(cliente.email);
             this.jchk_activo_modificar.setSelected(cliente.activo);
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             System.out.println("e.getMessage");
-        }    
+        }
     }//GEN-LAST:event_jtbl_clientes_modificarMouseClicked
 
     private void jbtn_buscar_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_buscar_modificarActionPerformed
         //iniciamos variables, controladores y la tabla
         int rut, telefono;
         String nombre, apellido, dv, email;
-        Boolean activo;
 
         ClienteControlador cc = new ClienteControlador();
 
@@ -1452,16 +1469,15 @@ public class MantenedorCliente extends javax.swing.JFrame {
             List<Cliente> lista = cc.buscarTodosClientes();
 
             for (Cliente cliente : lista) {
-                if (cliente.getActivo()) {
-                    rut = cliente.getRut();
-                    dv = cliente.getDv();
-                    nombre = cliente.getNombre_cliente();
-                    apellido = cliente.getApellido();
-                    telefono = cliente.getTelefono();
-                    email = cliente.getEmail();
 
-                    modelo.addRow(new Object[]{rut, dv, nombre, apellido, telefono, email});
-                }
+                rut = cliente.getRut();
+                dv = cliente.getDv();
+                nombre = cliente.getNombre_cliente();
+                apellido = cliente.getApellido();
+                telefono = cliente.getTelefono();
+                email = cliente.getEmail();
+
+                modelo.addRow(new Object[]{rut, dv, nombre, apellido, telefono, email});
             }
         } else {
 
@@ -1483,8 +1499,16 @@ public class MantenedorCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtn_buscar_modificarActionPerformed
 
     private void jchk_activo_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchk_activo_modificarActionPerformed
-        
+
     }//GEN-LAST:event_jchk_activo_modificarActionPerformed
+
+    private void jtxt_buscar_eliminarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxt_buscar_eliminarFocusGained
+        this.jtxt_buscar_eliminar.setText("");
+    }//GEN-LAST:event_jtxt_buscar_eliminarFocusGained
+
+    private void jtxt_buscar_modificarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxt_buscar_modificarFocusGained
+        this.jtxt_buscar_modificar.setText("");
+    }//GEN-LAST:event_jtxt_buscar_modificarFocusGained
 
     /**
      * @param args the command line arguments
@@ -1500,16 +1524,21 @@ public class MantenedorCliente extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MantenedorCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenedorCliente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MantenedorCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenedorCliente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MantenedorCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenedorCliente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MantenedorCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantenedorCliente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
