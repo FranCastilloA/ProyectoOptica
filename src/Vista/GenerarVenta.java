@@ -6,8 +6,12 @@
 package Vista;
 
 import Controlador.ClienteControlador;
+import Controlador.ProductoControlador;
 import Modelo.Cliente;
+import Modelo.Producto;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,9 +28,14 @@ public class GenerarVenta extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         try {
             llenarListaNombres();
+            llenarListaProductos();
+            vaciarCarrito();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
+    //creamos una copia de la tabla inicial para trabajar
+    //DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Carrito.getModel();
     
     //Metodo para llenar el jcombobox con los nombres de los clientes
     private void llenarListaNombres(){
@@ -43,6 +52,79 @@ public class GenerarVenta extends javax.swing.JFrame {
             nombre = c.getNombre_cliente();
             this.jcb_Cliente.addItem(nombre);
         }
+    }
+    //Metodo para llenar el jcombobox con los nombres de los productos
+    private void llenarListaProductos(){
+        //iniciamos variables
+        String nombre;
+        //creamos obj del controlador
+        ProductoControlador pc = new ProductoControlador();
+        //limpiamos el combobox
+        this.jcb_Producto.removeAllItems();
+        //llenamos lista de clientes
+        List<Producto> lista = pc.listarTodosProductosNombre();
+        //recorremos la lista y llenamos el combobox
+        for(Producto p : lista){
+            nombre = p.getNombre_producto();
+            this.jcb_Producto.addItem(nombre);
+        }
+    }
+    //Metodo para obtener el rut de un cliente
+    private int obtenerRut(String nombre){
+        //inicializamos variables
+        int rut=0;
+        //Creamos obj del controlador
+        ClienteControlador cc = new ClienteControlador();
+        //Creamos obj del modelo
+        Cliente cliente = cc.buscarClienteNombre(nombre);
+        rut = cliente.getRut();
+        
+        return rut;
+    }
+    //Metodo para llenar datos del cliente
+    private void mostrarCliente(int rut){
+        //creamos obj del controlador
+        ClienteControlador cc = new ClienteControlador();
+        //creamos obj del modelo
+        Cliente cliente = cc.buscarClienteRut(rut);
+        //llenamos los campos
+        this.jlbl_Rut.setText(cliente.getRut()+"");
+        this.jlbl_Dv.setText(cliente.getDv());
+        this.jlbl_Nombre.setText(cliente.getNombre_cliente());
+        this.jlbl_Apellido.setText(cliente.getApellido());
+        
+    }
+    //Metodo para llenar precio de producto
+    private void llenarPrecio(String nombre){
+        //creamos obj del controlador
+        ProductoControlador pc = new ProductoControlador();
+        //creamos obj del modelo
+        Producto producto = pc.buscarProducto(nombre);
+        //llenamos los campos
+        this.jlbl_PrecioUnitario.setText(producto.getPrecio()+"");
+    }
+    //Metodo para agregar producto al carro de compras
+    private void agregarProducto(Producto prod, int cant, int subtotal){
+        //iniciamos variables
+        int id_producto, precio;
+        String nombre_producto;
+        //creamos una copia de la tabla inicial para trabajar
+        //DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Carrito.getModel();
+        //asignamos variables
+        id_producto = prod.getId_producto();
+        nombre_producto = prod.getNombre_producto();
+        precio = prod.getPrecio();
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Carrito.getModel();
+        //agregamos el producto a la tabla
+        modelo.addRow(new Object[]{id_producto, nombre_producto, precio, cant, subtotal});
+    }
+    //Metodo para vaciar la tabla inicial
+    private void vaciarCarrito(){
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_Carrito.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
     }
 
     /**
@@ -68,7 +150,7 @@ public class GenerarVenta extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jlbl_SubTotal = new javax.swing.JLabel();
         jbtn_AgregarCarro = new javax.swing.JButton();
-        jbtn_LimpiarAgregar = new javax.swing.JButton();
+        jbtn_Calcular = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jbtn_Quitar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -113,6 +195,11 @@ public class GenerarVenta extends javax.swing.JFrame {
         jLabel3.setText("Seleccione Producto:");
 
         jcb_Producto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcb_Producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcb_ProductoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Precio Unitario:");
 
@@ -122,8 +209,6 @@ public class GenerarVenta extends javax.swing.JFrame {
 
         jLabel5.setText("Cantidad:");
 
-        jtxt_Cantidad.setText("Ingrese Cantidad");
-
         jLabel6.setText("SubTotal:");
 
         jLabel7.setText("$");
@@ -131,8 +216,18 @@ public class GenerarVenta extends javax.swing.JFrame {
         jlbl_SubTotal.setText("0000");
 
         jbtn_AgregarCarro.setText("Agregar al Carro");
+        jbtn_AgregarCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_AgregarCarroActionPerformed(evt);
+            }
+        });
 
-        jbtn_LimpiarAgregar.setText("Limpiar");
+        jbtn_Calcular.setText("Calcular");
+        jbtn_Calcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_CalcularActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -167,7 +262,7 @@ public class GenerarVenta extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jbtn_AgregarCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbtn_LimpiarAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbtn_Calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -194,7 +289,7 @@ public class GenerarVenta extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtn_AgregarCarro)
-                    .addComponent(jbtn_LimpiarAgregar))
+                    .addComponent(jbtn_Calcular))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -232,10 +327,6 @@ public class GenerarVenta extends javax.swing.JFrame {
         jtbl_Carrito.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jtbl_Carrito);
         jtbl_Carrito.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (jtbl_Carrito.getColumnModel().getColumnCount() > 0) {
-            jtbl_Carrito.getColumnModel().getColumn(3).setResizable(false);
-            jtbl_Carrito.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -268,6 +359,11 @@ public class GenerarVenta extends javax.swing.JFrame {
         jLabel2.setText("Seleccione Cliente:");
 
         jcb_Cliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcb_Cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcb_ClienteActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Rut:");
 
@@ -512,6 +608,81 @@ public class GenerarVenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcb_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcb_ClienteActionPerformed
+        // al seleccionar un cliente, se llenaran los datos
+        //inicializamos variables
+        String nombre;
+        int rut;
+        try {
+            //obtenemos el nombre del combobox seleccionado
+        nombre = (String) this.jcb_Cliente.getSelectedItem();
+        //obtenemos el rut del cliente seleccionado
+        rut = obtenerRut(nombre);
+        //llenamos los datos del cliente
+        mostrarCliente(rut);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_jcb_ClienteActionPerformed
+
+    private void jcb_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcb_ProductoActionPerformed
+        /// al seleccionar un producto, se llenaran los datos
+        //inicializamos variables
+        String nombre;
+        try {
+            //obtenemos el nombre del combobox seleccionado
+        nombre = (String) this.jcb_Producto.getSelectedItem();
+        //llenamos el precio del producto
+        llenarPrecio(nombre);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_jcb_ProductoActionPerformed
+
+    private void jbtn_CalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_CalcularActionPerformed
+        //Rescatamos datos
+        String cantidad = this.jtxt_Cantidad.getText();
+        String preciounit = this.jlbl_PrecioUnitario.getText();
+        //vemos que no hayan datos sin llenar
+        if(cantidad.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese Cantidad", "Validacion", 2);
+            this.jtxt_Cantidad.requestFocus();
+            return;
+        }
+        //convertimos el dato a int y calculamos el subtotal
+        try {
+            int cant = Integer.parseInt(cantidad);
+            int precio = Integer.parseInt(preciounit);
+            this.jlbl_SubTotal.setText((cant * precio)+"");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+    }//GEN-LAST:event_jbtn_CalcularActionPerformed
+
+    private void jbtn_AgregarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_AgregarCarroActionPerformed
+        // iniciamos variables
+        String cantidad, subtotal, nombre;
+        int cant, subt;
+        try {
+            //obtenemos los datos
+            cantidad = this.jtxt_Cantidad.getText();
+            subtotal = this.jlbl_SubTotal.getText();
+            nombre = (String) this.jcb_Producto.getSelectedItem();
+            cant = Integer.parseInt(cantidad);
+            subt = Integer.parseInt(subtotal);
+            //creamos obj del controlador
+            ProductoControlador pc = new ProductoControlador();
+            //creamos obj del modelo
+            Producto producto = pc.buscarProducto(nombre);
+            //agregamos el producto al carrito
+            agregarProducto(producto, cant, subt);
+        
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_jbtn_AgregarCarroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -575,9 +746,9 @@ public class GenerarVenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbtn_AgregarCarro;
+    private javax.swing.JButton jbtn_Calcular;
     private javax.swing.JButton jbtn_CancelarCompra;
     private javax.swing.JButton jbtn_IngresarCompra;
-    private javax.swing.JButton jbtn_LimpiarAgregar;
     private javax.swing.JButton jbtn_Quitar;
     private javax.swing.JComboBox<String> jcb_Cliente;
     private javax.swing.JComboBox<String> jcb_Producto;

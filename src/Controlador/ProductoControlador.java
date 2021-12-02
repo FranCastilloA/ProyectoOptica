@@ -191,6 +191,36 @@ public class ProductoControlador {
         return lista;
             
     }
+    
+    //Metodo para listar los nombres de los productos, by Fco Castillo
+    public List<Producto> listarTodosProductosNombre(){
+        List<Producto> lista = new ArrayList<>();
+        try {
+            Conexion con = new Conexion();
+            java.sql.Connection cnx = con.obtenerConexion();
+            
+            String query = "SELECT nombre_producto FROM producto WHERE disponible = 1";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+                        
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Producto producto = new Producto();
+                producto.setNombre_producto(rs.getString("nombre_producto"));
+                
+                lista.add(producto);
+            }
+            
+            rs.close();
+            stmt.close();
+            cnx.close();
+                 
+        } catch (Exception e) {
+            System.out.println("Error SQL al buscar Clientes"+ e.getMessage());
+            
+        }
+        return lista;
+    }
 }    
     
   
