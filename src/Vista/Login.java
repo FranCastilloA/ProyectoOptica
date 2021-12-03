@@ -180,10 +180,12 @@ public class Login extends javax.swing.JFrame {
             case 1:
                 MenuAdmin menuAd = new MenuAdmin();
                 menuAd.setVisible(true);
+                dispose();
                 break;
             case 2:
                 MenuVendedor menuVen = new MenuVendedor();
                 menuVen.setVisible(true);
+                dispose();
                 break;
             default:
                 JOptionPane.showMessageDialog(this, "Combinacion usuario/contraseña incorrectos.", "Error", 1);
