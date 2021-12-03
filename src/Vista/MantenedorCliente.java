@@ -126,14 +126,6 @@ public class MantenedorCliente extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jtxt_buscar_listar = new javax.swing.JTextField();
-        jbtn_salir_listar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtbl_clientes_listar = new javax.swing.JTable();
-        jbtn_buscar_listar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jbtn_salir = new javax.swing.JButton();
@@ -152,6 +144,14 @@ public class MantenedorCliente extends javax.swing.JFrame {
         jbtn_limpiar = new javax.swing.JButton();
         jLabel44 = new javax.swing.JLabel();
         jtxt_email_añadir = new javax.swing.JTextField();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jtxt_buscar_listar = new javax.swing.JTextField();
+        jbtn_salir_listar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtbl_clientes_listar = new javax.swing.JTable();
+        jbtn_buscar_listar = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jtxt_buscar_modificar = new javax.swing.JTextField();
@@ -186,53 +186,27 @@ public class MantenedorCliente extends javax.swing.JFrame {
         jbtn_eliminar = new javax.swing.JButton();
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0)), "CLIENTE", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
-        jPanel4.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "CLIENTE", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Rut");
 
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Dv");
 
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Nombre");
 
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Apellido");
 
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Telefono");
 
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Email");
 
         jButton8.setBackground(new java.awt.Color(204, 204, 204));
-        jButton8.setForeground(new java.awt.Color(0, 0, 0));
         jButton8.setText("Modificar");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-
-        jTextField16.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField16.setForeground(new java.awt.Color(0, 0, 0));
-
-        jTextField17.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField17.setForeground(new java.awt.Color(0, 0, 0));
-
-        jTextField18.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField18.setForeground(new java.awt.Color(0, 0, 0));
-
-        jTextField19.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField19.setForeground(new java.awt.Color(0, 0, 0));
-
-        jTextField20.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField20.setForeground(new java.awt.Color(0, 0, 0));
-
-        jTextField21.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField21.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -317,145 +291,12 @@ public class MantenedorCliente extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jTabbedPane1.setBackground(new java.awt.Color(204, 204, 204));
-        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jPanel8.setBackground(new java.awt.Color(204, 204, 204));
-
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Ingrese Apellido");
-
-        jtxt_buscar_listar.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_buscar_listar.setForeground(new java.awt.Color(0, 0, 0));
-        jtxt_buscar_listar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jtxt_buscar_listarFocusGained(evt);
-            }
-        });
-        jtxt_buscar_listar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxt_buscar_listarActionPerformed(evt);
-            }
-        });
-
-        jbtn_salir_listar.setBackground(new java.awt.Color(204, 204, 204));
-        jbtn_salir_listar.setForeground(new java.awt.Color(0, 0, 0));
-        jbtn_salir_listar.setText("Salir");
-        jbtn_salir_listar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_salir_listarActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021 ");
-
-        jtbl_clientes_listar.setBackground(new java.awt.Color(255, 255, 255));
-        jtbl_clientes_listar.setForeground(new java.awt.Color(0, 0, 0));
-        jtbl_clientes_listar.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Rut", "Dv", "Nombre", "Apellido", "Telefono", "Email"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jtbl_clientes_listar.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jtbl_clientes_listar);
-        if (jtbl_clientes_listar.getColumnModel().getColumnCount() > 0) {
-            jtbl_clientes_listar.getColumnModel().getColumn(0).setResizable(false);
-            jtbl_clientes_listar.getColumnModel().getColumn(0).setPreferredWidth(80);
-            jtbl_clientes_listar.getColumnModel().getColumn(1).setResizable(false);
-            jtbl_clientes_listar.getColumnModel().getColumn(1).setPreferredWidth(30);
-            jtbl_clientes_listar.getColumnModel().getColumn(2).setResizable(false);
-            jtbl_clientes_listar.getColumnModel().getColumn(2).setPreferredWidth(100);
-            jtbl_clientes_listar.getColumnModel().getColumn(3).setResizable(false);
-            jtbl_clientes_listar.getColumnModel().getColumn(3).setPreferredWidth(100);
-            jtbl_clientes_listar.getColumnModel().getColumn(4).setResizable(false);
-            jtbl_clientes_listar.getColumnModel().getColumn(4).setPreferredWidth(80);
-            jtbl_clientes_listar.getColumnModel().getColumn(5).setResizable(false);
-            jtbl_clientes_listar.getColumnModel().getColumn(5).setPreferredWidth(150);
-        }
-
-        jbtn_buscar_listar.setText("Buscar");
-        jbtn_buscar_listar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtn_buscar_listarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addGap(0, 8, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(96, 96, 96)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtxt_buscar_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbtn_buscar_listar))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jbtn_salir_listar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtxt_buscar_listar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtn_buscar_listar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtn_salir_listar)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
-        );
-
-        jTabbedPane1.addTab("Listar", jPanel8);
-
-        jPanel7.setBackground(new java.awt.Color(204, 204, 204));
-
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021 ");
 
         jbtn_salir.setBackground(new java.awt.Color(204, 204, 204));
-        jbtn_salir.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_salir.setText("Salir");
         jbtn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -463,27 +304,19 @@ public class MantenedorCliente extends javax.swing.JFrame {
             }
         });
 
-        jPanel11.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0)), "Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
-        jPanel11.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153)), "Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
 
-        jLabel39.setForeground(new java.awt.Color(0, 0, 0));
         jLabel39.setText("Rut");
 
-        jLabel40.setForeground(new java.awt.Color(0, 0, 0));
         jLabel40.setText("-");
 
-        jLabel41.setForeground(new java.awt.Color(0, 0, 0));
         jLabel41.setText("Nombre");
 
-        jLabel42.setForeground(new java.awt.Color(0, 0, 0));
         jLabel42.setText("Apellido");
 
-        jLabel43.setForeground(new java.awt.Color(0, 0, 0));
         jLabel43.setText("Telefono");
 
-        jbtn_añadir.setBackground(new java.awt.Color(204, 204, 204));
-        jbtn_añadir.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_añadir.setBackground(new java.awt.Color(0, 153, 153));
         jbtn_añadir.setText("Añadir");
         jbtn_añadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -491,8 +324,6 @@ public class MantenedorCliente extends javax.swing.JFrame {
             }
         });
 
-        jtxt_rut_añadir.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_rut_añadir.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_rut_añadir.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtxt_rut_añadirFocusGained(evt);
@@ -504,32 +335,24 @@ public class MantenedorCliente extends javax.swing.JFrame {
             }
         });
 
-        jtxt_dv_añadir.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_dv_añadir.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_dv_añadir.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtxt_dv_añadirFocusGained(evt);
             }
         });
 
-        jtxt_nombre_añadir.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_nombre_añadir.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_nombre_añadir.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtxt_nombre_añadirFocusGained(evt);
             }
         });
 
-        jtxt_apellido_añadir.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_apellido_añadir.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_apellido_añadir.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtxt_apellido_añadirFocusGained(evt);
             }
         });
 
-        jtxt_telefono_añadir.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_telefono_añadir.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_telefono_añadir.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtxt_telefono_añadirFocusGained(evt);
@@ -537,7 +360,6 @@ public class MantenedorCliente extends javax.swing.JFrame {
         });
 
         jbtn_limpiar.setBackground(new java.awt.Color(204, 204, 204));
-        jbtn_limpiar.setForeground(new java.awt.Color(0, 0, 0));
         jbtn_limpiar.setText("Limpiar");
         jbtn_limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -545,11 +367,8 @@ public class MantenedorCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel44.setForeground(new java.awt.Color(0, 0, 0));
         jLabel44.setText("Email");
 
-        jtxt_email_añadir.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_email_añadir.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_email_añadir.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtxt_email_añadirFocusGained(evt);
@@ -562,10 +381,10 @@ public class MantenedorCliente extends javax.swing.JFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jbtn_limpiar)
+                .addComponent(jbtn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtn_añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addComponent(jbtn_añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -640,37 +459,155 @@ public class MantenedorCliente extends javax.swing.JFrame {
                         .addGap(134, 134, 134)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbtn_salir)
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel4)))
-                .addContainerGap(112, Short.MAX_VALUE))
+                        .addGap(117, 117, 117)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(jbtn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(3, 3, 3)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(jbtn_salir)
-                        .addGap(50, 50, 50))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(38, 38, 38))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jbtn_salir)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel4))
         );
 
         jTabbedPane1.addTab("Añadir", jPanel7);
 
-        jPanel9.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel1.setText("Ingrese Apellido");
+
+        jtxt_buscar_listar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtxt_buscar_listarFocusGained(evt);
+            }
+        });
+        jtxt_buscar_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxt_buscar_listarActionPerformed(evt);
+            }
+        });
+
+        jbtn_salir_listar.setBackground(new java.awt.Color(204, 204, 204));
+        jbtn_salir_listar.setText("Salir");
+        jbtn_salir_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_salir_listarActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021 ");
+
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+
+        jtbl_clientes_listar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        jtbl_clientes_listar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Rut", "Dv", "Nombre", "Apellido", "Telefono", "Email"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtbl_clientes_listar.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jtbl_clientes_listar);
+        if (jtbl_clientes_listar.getColumnModel().getColumnCount() > 0) {
+            jtbl_clientes_listar.getColumnModel().getColumn(0).setResizable(false);
+            jtbl_clientes_listar.getColumnModel().getColumn(0).setPreferredWidth(80);
+            jtbl_clientes_listar.getColumnModel().getColumn(1).setResizable(false);
+            jtbl_clientes_listar.getColumnModel().getColumn(1).setPreferredWidth(30);
+            jtbl_clientes_listar.getColumnModel().getColumn(2).setResizable(false);
+            jtbl_clientes_listar.getColumnModel().getColumn(2).setPreferredWidth(100);
+            jtbl_clientes_listar.getColumnModel().getColumn(3).setResizable(false);
+            jtbl_clientes_listar.getColumnModel().getColumn(3).setPreferredWidth(100);
+            jtbl_clientes_listar.getColumnModel().getColumn(4).setResizable(false);
+            jtbl_clientes_listar.getColumnModel().getColumn(4).setPreferredWidth(80);
+            jtbl_clientes_listar.getColumnModel().getColumn(5).setResizable(false);
+            jtbl_clientes_listar.getColumnModel().getColumn(5).setPreferredWidth(150);
+        }
+
+        jbtn_buscar_listar.setBackground(new java.awt.Color(0, 153, 153));
+        jbtn_buscar_listar.setText("Buscar");
+        jbtn_buscar_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_buscar_listarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtxt_buscar_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtn_buscar_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jbtn_salir_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jtxt_buscar_listar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtn_buscar_listar))
+                .addGap(52, 52, 52)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addComponent(jbtn_salir_listar)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jTabbedPane1.addTab("Listar", jPanel8);
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingrese Apellido");
 
-        jtxt_buscar_modificar.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_buscar_modificar.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_buscar_modificar.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtxt_buscar_modificarFocusGained(evt);
@@ -683,7 +620,6 @@ public class MantenedorCliente extends javax.swing.JFrame {
         });
 
         jButton7.setBackground(new java.awt.Color(204, 204, 204));
-        jButton7.setForeground(new java.awt.Color(0, 0, 0));
         jButton7.setText("Salir");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -691,10 +627,11 @@ public class MantenedorCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setForeground(new java.awt.Color(153, 153, 153));
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel31.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021 ");
 
+        jtbl_clientes_modificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
         jtbl_clientes_modificar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -738,6 +675,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
             jtbl_clientes_modificar.getColumnModel().getColumn(3).setPreferredWidth(80);
         }
 
+        jbtn_buscar_modificar.setBackground(new java.awt.Color(153, 153, 153));
         jbtn_buscar_modificar.setText("Buscar");
         jbtn_buscar_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -745,27 +683,19 @@ public class MantenedorCliente extends javax.swing.JFrame {
             }
         });
 
-        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0)), "Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
-        jPanel6.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153))), "Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
 
-        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Rut");
 
-        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setText("-");
 
-        jLabel35.setForeground(new java.awt.Color(0, 0, 0));
         jLabel35.setText("Nombre");
 
-        jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setText("Apellido");
 
-        jLabel38.setForeground(new java.awt.Color(0, 0, 0));
         jLabel38.setText("Email");
 
-        jbtn_modificar.setBackground(new java.awt.Color(204, 204, 204));
-        jbtn_modificar.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_modificar.setBackground(new java.awt.Color(0, 153, 153));
         jbtn_modificar.setText("Modificar");
         jbtn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -786,20 +716,13 @@ public class MantenedorCliente extends javax.swing.JFrame {
         jtxt_dv_modificar.setBackground(new java.awt.Color(255, 255, 255));
         jtxt_dv_modificar.setForeground(new java.awt.Color(102, 102, 102));
 
-        jtxt_nombre_modificar.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_nombre_modificar.setForeground(new java.awt.Color(0, 0, 0));
+        jtxt_nombre_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxt_nombre_modificarActionPerformed(evt);
+            }
+        });
 
-        jtxt_apellido_modificar.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_apellido_modificar.setForeground(new java.awt.Color(0, 0, 0));
-
-        jtxt_email_modificar.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_email_modificar.setForeground(new java.awt.Color(0, 0, 0));
-
-        jLabel37.setForeground(new java.awt.Color(0, 0, 0));
         jLabel37.setText("Telefono");
-
-        jtxt_telefono_modificar.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_telefono_modificar.setForeground(new java.awt.Color(0, 0, 0));
 
         jchk_activo_modificar.setText("Activo");
         jchk_activo_modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -813,42 +736,38 @@ public class MantenedorCliente extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jchk_activo_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel36)
+                            .addComponent(jLabel37)
+                            .addComponent(jLabel38))
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtxt_email_modificar)
+                            .addComponent(jtxt_telefono_modificar)
+                            .addComponent(jtxt_apellido_modificar)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel35)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel30)))
                         .addGap(18, 18, 18)
-                        .addComponent(jbtn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel30)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtxt_rut_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jtxt_rut_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel34)
+                                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtxt_dv_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtxt_dv_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel36)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtxt_apellido_modificar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel35)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtxt_nombre_modificar))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel37)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtxt_telefono_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel38)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtxt_email_modificar)))))
+                            .addComponent(jtxt_nombre_modificar))))
                 .addGap(16, 16, 16))
         );
         jPanel6Layout.setVerticalGroup(
@@ -865,10 +784,10 @@ public class MantenedorCliente extends javax.swing.JFrame {
                     .addComponent(jLabel35)
                     .addComponent(jtxt_nombre_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36)
                     .addComponent(jtxt_apellido_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGap(12, 12, 12)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
                     .addComponent(jtxt_telefono_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -880,7 +799,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtn_modificar)
                     .addComponent(jchk_activo_modificar))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -888,26 +807,28 @@ public class MantenedorCliente extends javax.swing.JFrame {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(12, 12, 12)
                                 .addComponent(jtxt_buscar_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jbtn_buscar_modificar))
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(jButton7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel31)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jbtn_buscar_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(jLabel31)))
+                .addGap(18, 18, 18))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(238, 238, 238)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -924,22 +845,16 @@ public class MantenedorCliente extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(40, 40, 40))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel31))
         );
 
         jTabbedPane1.addTab("Modificar", jPanel9);
 
-        jPanel10.setBackground(new java.awt.Color(204, 204, 204));
-
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Ingrese Apellido");
 
-        jtxt_buscar_eliminar.setBackground(new java.awt.Color(255, 255, 255));
-        jtxt_buscar_eliminar.setForeground(new java.awt.Color(0, 0, 0));
         jtxt_buscar_eliminar.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtxt_buscar_eliminarFocusGained(evt);
@@ -952,7 +867,6 @@ public class MantenedorCliente extends javax.swing.JFrame {
         });
 
         jButton10.setBackground(new java.awt.Color(204, 204, 204));
-        jButton10.setForeground(new java.awt.Color(0, 0, 0));
         jButton10.setText("Salir");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -960,10 +874,11 @@ public class MantenedorCliente extends javax.swing.JFrame {
             }
         });
 
-        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setForeground(new java.awt.Color(153, 153, 153));
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel32.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021 ");
 
+        jtbl_clientes_eliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
         jtbl_clientes_eliminar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -1007,6 +922,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
             jtbl_clientes_eliminar.getColumnModel().getColumn(5).setPreferredWidth(100);
         }
 
+        jbtn_buscar_eliminar.setBackground(new java.awt.Color(153, 153, 153));
         jbtn_buscar_eliminar.setText("Buscar");
         jbtn_buscar_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1014,8 +930,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
             }
         });
 
-        jbtn_eliminar.setBackground(new java.awt.Color(204, 204, 204));
-        jbtn_eliminar.setForeground(new java.awt.Color(0, 0, 0));
+        jbtn_eliminar.setBackground(new java.awt.Color(0, 153, 153));
         jbtn_eliminar.setText("Eliminar");
         jbtn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1039,17 +954,18 @@ public class MantenedorCliente extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jtxt_buscar_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(20, 20, 20)
-                                        .addComponent(jbtn_buscar_eliminar))
-                                    .addGroup(jPanel10Layout.createSequentialGroup()
-                                        .addComponent(jButton10)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel32))))
+                                        .addComponent(jbtn_buscar_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addGap(240, 240, 240)
-                                .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 115, Short.MAX_VALUE))
+                                .addComponent(jbtn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 241, Short.MAX_VALUE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel32)
+                .addGap(119, 119, 119))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1063,11 +979,10 @@ public class MantenedorCliente extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtn_eliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
-                    .addComponent(jLabel32))
-                .addGap(32, 32, 32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jButton10)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel32))
         );
 
         jTabbedPane1.addTab("Eliminar", jPanel10);
@@ -1509,6 +1424,10 @@ public class MantenedorCliente extends javax.swing.JFrame {
     private void jtxt_buscar_modificarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtxt_buscar_modificarFocusGained
         this.jtxt_buscar_modificar.setText("");
     }//GEN-LAST:event_jtxt_buscar_modificarFocusGained
+
+    private void jtxt_nombre_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_nombre_modificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxt_nombre_modificarActionPerformed
 
     /**
      * @param args the command line arguments
