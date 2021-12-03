@@ -336,7 +336,9 @@ public class GenerarVenta extends javax.swing.JFrame {
         setTitle("GENERAR VENTA");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Agregar Productos"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Agregar Productos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
+        jPanel2.setForeground(new java.awt.Color(0, 153, 153));
+        jPanel2.setToolTipText("");
 
         jLabel3.setText("Seleccione Producto:");
 
@@ -361,6 +363,7 @@ public class GenerarVenta extends javax.swing.JFrame {
 
         jlbl_SubTotal.setText("0000");
 
+        jbtn_AgregarCarro.setBackground(new java.awt.Color(0, 153, 153));
         jbtn_AgregarCarro.setText("Agregar al Carro");
         jbtn_AgregarCarro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -439,7 +442,7 @@ public class GenerarVenta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Carro de Compras"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Carro de Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
 
         jbtn_Quitar.setText("Quitar Producto");
         jbtn_Quitar.addActionListener(new java.awt.event.ActionListener() {
@@ -491,7 +494,7 @@ public class GenerarVenta extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -505,7 +508,7 @@ public class GenerarVenta extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresar Venta"));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
 
         jLabel2.setText("Seleccione Cliente:");
 
@@ -584,7 +587,7 @@ public class GenerarVenta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Formalizar Compra"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Formalizar Compra", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
 
         jLabel12.setText("Total Compra:");
 
@@ -688,6 +691,7 @@ public class GenerarVenta extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jbtn_IngresarCompra.setBackground(new java.awt.Color(0, 153, 153));
         jbtn_IngresarCompra.setText("Ingresar Compra");
         jbtn_IngresarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -745,6 +749,7 @@ public class GenerarVenta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel17.setForeground(new java.awt.Color(153, 153, 153));
         jLabel17.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

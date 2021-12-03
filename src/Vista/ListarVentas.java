@@ -258,6 +258,7 @@ public class ListarVentas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LISTAR VENTAS");
 
+        jbtn_VerDCTodos.setBackground(new java.awt.Color(0, 153, 153));
         jbtn_VerDCTodos.setText("Ver Detalle Compra");
         jbtn_VerDCTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,6 +266,9 @@ public class ListarVentas extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+
+        jtbl_Todos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
         jtbl_Todos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -302,10 +306,10 @@ public class ListarVentas extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(228, 228, 228)
+                .addGap(236, 236, 236)
                 .addComponent(jbtn_VerDCTodos)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -313,7 +317,7 @@ public class ListarVentas extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtn_VerDCTodos)
                 .addContainerGap())
@@ -321,6 +325,7 @@ public class ListarVentas extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Listar Todas las Ventas", jPanel1);
 
+        jbtn_VerDCCliente.setBackground(new java.awt.Color(0, 153, 153));
         jbtn_VerDCCliente.setText("Ver Detalle Compra");
         jbtn_VerDCCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,6 +333,9 @@ public class ListarVentas extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+
+        jtbl_Cliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
         jtbl_Cliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -363,6 +371,7 @@ public class ListarVentas extends javax.swing.JFrame {
 
         jcb_Clientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "juan", "jorge", "pedro", "pablo", "diego", "denisse", "cesar", "cristian" }));
 
+        jbtn_ListarCliente.setBackground(new java.awt.Color(153, 153, 153));
         jbtn_ListarCliente.setText("Listar");
         jbtn_ListarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -389,11 +398,11 @@ public class ListarVentas extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jcb_Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)
-                        .addComponent(jbtn_ListarCliente)
+                        .addComponent(jbtn_ListarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jbtn_LimpiarCliente)
+                        .addComponent(jbtn_LimpiarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(228, 228, 228)
@@ -418,6 +427,7 @@ public class ListarVentas extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Listar por Cliente", jPanel2);
 
+        jbtn_VerDCFecha.setBackground(new java.awt.Color(0, 153, 153));
         jbtn_VerDCFecha.setText("Ver Detalle Compra");
         jbtn_VerDCFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -425,6 +435,9 @@ public class ListarVentas extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+
+        jtbl_Fecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
         jtbl_Fecha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -460,6 +473,7 @@ public class ListarVentas extends javax.swing.JFrame {
 
         jLabel4.setText("Formato Dia/Mes/Año");
 
+        jbtn_ListarFecha.setBackground(new java.awt.Color(153, 153, 153));
         jbtn_ListarFecha.setText("Listar");
         jbtn_ListarFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -483,7 +497,7 @@ public class ListarVentas extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(228, 228, 228)
                         .addComponent(jbtn_VerDCFecha)
-                        .addGap(0, 220, Short.MAX_VALUE))
+                        .addGap(0, 239, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane3))
@@ -499,7 +513,7 @@ public class ListarVentas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbtn_ListarFecha)
+                        .addComponent(jbtn_ListarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbtn_LimpiarFecha)))
                 .addContainerGap())
@@ -532,6 +546,7 @@ public class ListarVentas extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -541,28 +556,25 @@ public class ListarVentas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTabbedPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addComponent(jbtn_Volver)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(131, 131, 131)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane1))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(110, 110, 110))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(248, 248, 248)
+                .addComponent(jbtn_Volver)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtn_Volver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1))
         );
 
         pack();

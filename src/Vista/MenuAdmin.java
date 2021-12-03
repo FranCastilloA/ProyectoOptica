@@ -32,6 +32,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenuAd = new javax.swing.JMenu();
@@ -42,6 +43,10 @@ public class MenuAdmin extends javax.swing.JFrame {
         jmiMantCli = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jmiMantProduc = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        jmi_cerrarCesion = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        jmi_salir = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jmiAyuda = new javax.swing.JMenuItem();
 
@@ -50,6 +55,8 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Administración");
@@ -100,6 +107,24 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
         jMenuAd.add(jmiMantProduc);
+        jMenuAd.add(jSeparator4);
+
+        jmi_cerrarCesion.setText("Cerrar Sesión");
+        jmi_cerrarCesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_cerrarCesionActionPerformed(evt);
+            }
+        });
+        jMenuAd.add(jmi_cerrarCesion);
+        jMenuAd.add(jSeparator5);
+
+        jmi_salir.setText("Salir");
+        jmi_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_salirActionPerformed(evt);
+            }
+        });
+        jMenuAd.add(jmi_salir);
 
         jMenuBar2.add(jMenuAd);
 
@@ -159,6 +184,15 @@ public class MenuAdmin extends javax.swing.JFrame {
         manCliente.setVisible(true);
     }//GEN-LAST:event_jmiMantCliActionPerformed
 
+    private void jmi_cerrarCesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_cerrarCesionActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_jmi_cerrarCesionActionPerformed
+
+    private void jmi_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_salirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jmi_salirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -202,13 +236,18 @@ public class MenuAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuAd;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JMenuItem jmiAyuda;
     private javax.swing.JMenuItem jmiHisVenta;
     private javax.swing.JMenuItem jmiMantCli;
     private javax.swing.JMenuItem jmiMantProduc;
     private javax.swing.JMenuItem jmiVenta;
+    private javax.swing.JMenuItem jmi_cerrarCesion;
+    private javax.swing.JMenuItem jmi_salir;
     // End of variables declaration//GEN-END:variables
 }

@@ -52,6 +52,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
         jbtnLimpiar = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
+        jbtn_salirAgregarProducto = new javax.swing.JButton();
         jpListarProducto = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -88,6 +89,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         jtbl_modificarProducto = new javax.swing.JTable();
+        jbtn_salirModificarProducto = new javax.swing.JButton();
         jpEliminar = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtbl_eliminarproducto = new javax.swing.JTable();
@@ -97,6 +99,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
         jtxt_buscarnombre = new javax.swing.JTextField();
         jbtn_eliminarProducto = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jbtn_salirEliminarProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mantenedor de Productos");
@@ -158,6 +161,13 @@ public class MantenedorProducto extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(153, 153, 153));
         jLabel8.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021");
 
+        jbtn_salirAgregarProducto.setText("Salir");
+        jbtn_salirAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_salirAgregarProductoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpAgregarProductoLayout = new javax.swing.GroupLayout(jpAgregarProducto);
         jpAgregarProducto.setLayout(jpAgregarProductoLayout);
         jpAgregarProductoLayout.setHorizontalGroup(
@@ -165,7 +175,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAgregarProductoLayout.createSequentialGroup()
                 .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jpAgregarProductoLayout.createSequentialGroup()
-                        .addGap(0, 131, Short.MAX_VALUE)
+                        .addGap(0, 118, Short.MAX_VALUE)
                         .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jpAgregarProductoLayout.createSequentialGroup()
                                 .addComponent(jlTipProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,21 +185,30 @@ public class MantenedorProducto extends javax.swing.JFrame {
                                 .addComponent(jlDescripProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jtxtDescripProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jpAgregarProductoLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpAgregarProductoLayout.createSequentialGroup()
                         .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jpAgregarProductoLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jlPrecioProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpAgregarProductoLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jbtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlPrecioProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpAgregarProductoLayout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(jlDispProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jlDispProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jpAgregarProductoLayout.createSequentialGroup()
+                                        .addComponent(jbtnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(39, 39, 39)))))
+                        .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpAgregarProductoLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jtxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBox1)
-                                    .addComponent(jbtnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jCheckBox1)))
+                            .addGroup(jpAgregarProductoLayout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jbtnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpAgregarProductoLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jpAgregarProductoLayout.createSequentialGroup()
                                 .addComponent(jlNomProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -198,7 +217,9 @@ public class MantenedorProducto extends javax.swing.JFrame {
                                 .addComponent(jlCantProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jtxtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(127, 127, 127))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtn_salirAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAgregarProductoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
@@ -211,7 +232,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
                 .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlNomProduc)
                     .addComponent(jtxtNomProduc))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
                 .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcomboxTipProduc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlTipProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -235,7 +256,8 @@ public class MantenedorProducto extends javax.swing.JFrame {
                 .addGap(76, 76, 76)
                 .addGroup(jpAgregarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnGuardar)
-                    .addComponent(jbtnLimpiar))
+                    .addComponent(jbtnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtn_salirAgregarProducto))
                 .addGap(39, 39, 39)
                 .addComponent(jLabel8))
         );
@@ -454,7 +476,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
                         .addComponent(jtxtIDmodifar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jlbPPmodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addComponent(jtxtPPmodificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -558,29 +580,39 @@ public class MantenedorProducto extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jbtn_salirModificarProducto.setText("Salir");
+        jbtn_salirModificarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_salirModificarProductoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpModificarProductoLayout = new javax.swing.GroupLayout(jpModificarProducto);
         jpModificarProducto.setLayout(jpModificarProductoLayout);
         jpModificarProductoLayout.setHorizontalGroup(
             jpModificarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpModificarProductoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpModificarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(jpModificarProductoLayout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jbtn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtn_limpiar_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102))
+                .addGap(61, 61, 61)
+                .addComponent(jbtn_salirModificarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
             .addGroup(jpModificarProductoLayout.createSequentialGroup()
                 .addGap(117, 117, 117)
                 .addComponent(jLabel6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpModificarProductoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpModificarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpModificarProductoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jpModificarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jpModificarProductoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jpModificarProductoLayout.setVerticalGroup(
@@ -593,11 +625,12 @@ public class MantenedorProducto extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpModificarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtn_modificar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbtn_limpiar_modificar, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jpModificarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtn_modificar)
+                    .addComponent(jbtn_limpiar_modificar)
+                    .addComponent(jbtn_salirModificarProducto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
         );
 
         jtpMantenedorProducto.addTab("Modificar", jpModificarProducto);
@@ -675,6 +708,13 @@ public class MantenedorProducto extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("Copyright - Alison Barraza - Francisco Castillo - Cristian Gonzalez - 2021");
 
+        jbtn_salirEliminarProducto.setText("Salir");
+        jbtn_salirEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_salirEliminarProductoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpEliminarLayout = new javax.swing.GroupLayout(jpEliminar);
         jpEliminar.setLayout(jpEliminarLayout);
         jpEliminarLayout.setHorizontalGroup(
@@ -692,7 +732,9 @@ public class MantenedorProducto extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEliminarLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbtn_eliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(244, 244, 244))
+                        .addGap(135, 135, 135)
+                        .addComponent(jbtn_salirEliminarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(153, 153, 153))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEliminarLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -702,10 +744,12 @@ public class MantenedorProducto extends javax.swing.JFrame {
             .addGroup(jpEliminarLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
-                .addComponent(jbtn_eliminarProducto)
+                .addGap(105, 105, 105)
+                .addGroup(jpEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtn_eliminarProducto)
+                    .addComponent(jbtn_salirEliminarProducto))
                 .addGap(92, 92, 92)
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
         );
@@ -1004,6 +1048,18 @@ public class MantenedorProducto extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jbtnSalirListarActionPerformed
 
+    private void jbtn_salirAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_salirAgregarProductoActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbtn_salirAgregarProductoActionPerformed
+
+    private void jbtn_salirModificarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_salirModificarProductoActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbtn_salirModificarProductoActionPerformed
+
+    private void jbtn_salirEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_salirEliminarProductoActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbtn_salirEliminarProductoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1066,6 +1122,9 @@ public class MantenedorProducto extends javax.swing.JFrame {
     private javax.swing.JButton jbtn_eliminarProducto;
     private javax.swing.JButton jbtn_limpiar_modificar;
     private javax.swing.JButton jbtn_modificar;
+    private javax.swing.JButton jbtn_salirAgregarProducto;
+    private javax.swing.JButton jbtn_salirEliminarProducto;
+    private javax.swing.JButton jbtn_salirModificarProducto;
     private javax.swing.JCheckBox jcbDispModificar;
     private javax.swing.JComboBox<String> jcomboxTPmodificar;
     private javax.swing.JComboBox<String> jcomboxTipProduc;
