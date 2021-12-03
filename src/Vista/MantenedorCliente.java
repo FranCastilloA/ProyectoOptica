@@ -1399,7 +1399,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
             List<Cliente> lista = cc.buscarClienteApellido(apellido);
 
             for (Cliente cliente : lista) {
-                if (cliente.getActivo()) {
+                
                     rut = cliente.getRut();
                     dv = cliente.getDv();
                     nombre = cliente.getNombre_cliente();
@@ -1408,7 +1408,7 @@ public class MantenedorCliente extends javax.swing.JFrame {
                     email = cliente.getEmail();
 
                     modelo.addRow(new Object[]{rut, dv, nombre, apellido, telefono, email});
-                }
+                
             }
         }
     }//GEN-LAST:event_jbtn_buscar_modificarActionPerformed
