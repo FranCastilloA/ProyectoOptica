@@ -49,7 +49,7 @@ public class ProductoControlador {
        try {
            Conexion con = new Conexion();
            java.sql.Connection cnx = con.obtenerConexion();
-           String query ="UPDATE produco set nombre_producto=?, tipo_producto=?, descripcion=?, precio=?, cantidad=?, disponible=?)WHERE id_producto=?";
+           String query ="UPDATE producto set nombre_producto=?, tipo_producto=?, descripcion=?, precio=?, cantidad=?, disponible=? WHERE id_producto=?";
            PreparedStatement stmt = cnx.prepareStatement(query);
            stmt.setString(1,producto.getNombre_producto());
            stmt.setString(2,producto.getTipo_producto());
@@ -111,6 +111,7 @@ public class ProductoControlador {
                producto.setId_producto(rs.getInt("id_producto"));
                producto.setNombre_producto(rs.getString("nombre_producto"));
                producto.setTipo_producto(rs.getString("tipo_producto"));
+               producto.setDescripcion(rs.getString("descripcion"));
                producto.setPrecio(rs.getInt("precio"));
                producto.setCantidad(rs.getInt("cantidad"));
                producto.setDisponible(rs.getBoolean("disponible"));
@@ -143,6 +144,7 @@ public class ProductoControlador {
                producto.setId_producto(rs.getInt("id_producto"));
                producto.setNombre_producto(rs.getString("nombre_producto"));
                producto.setTipo_producto(rs.getString("tipo_producto"));
+               producto.setDescripcion(rs.getString("descripcion"));
                producto.setPrecio(rs.getInt("precio"));
                producto.setCantidad(rs.getInt("cantidad"));
                producto.setDisponible(rs.getBoolean("disponible"));
@@ -175,6 +177,7 @@ public class ProductoControlador {
                producto.setId_producto(rs.getInt("id_producto"));
                producto.setNombre_producto(rs.getString("nombre_producto"));
                producto.setTipo_producto(rs.getString("tipo_producto"));
+               producto.setDescripcion(rs.getString("descripcion"));
                producto.setPrecio(rs.getInt("precio"));
                producto.setCantidad(rs.getInt("cantidad"));
                producto.setDisponible(rs.getBoolean("disponible"));
