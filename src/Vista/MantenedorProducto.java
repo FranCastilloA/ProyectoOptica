@@ -24,6 +24,167 @@ public class MantenedorProducto extends javax.swing.JFrame {
         initComponents();
         //inicializa la ventana en el centrol
         this.setLocationRelativeTo(null);
+        try {
+            listarProductos();
+            listarProductos2();
+            listarProductos3();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    //Metodo para listar todos los producto
+    private void listarProductos(){
+        //iniciamos variables
+        String nombre_producto, tipo_producto, descripcion;
+        int precio, cantidad;
+        boolean disponible;
+        //creamos obj del controlador
+        ProductoControlador pc = new ProductoControlador();
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_listarProductos.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
+        //llenamos la lista con el metodo del controlador
+        List<Producto> lista = pc.buscarTodos();
+        //recorremos la lista y llenamos la tabla
+        for(Producto p : lista){
+            nombre_producto = p.getNombre_producto();
+            tipo_producto = p.getTipo_producto();
+            descripcion = p.getDescripcion();
+            precio = p.getPrecio();
+            cantidad = p.getCantidad();
+            disponible = p.isDisponible();
+            
+            modelo.addRow(new Object[]{nombre_producto, tipo_producto, descripcion, precio, cantidad, disponible});
+        }
+    }
+    //metodo para listar todos los productos para modificar
+    private void listarProductos2(){
+        //iniciamos variables
+        String nombre_producto, tipo_producto, descripcion;
+        int precio, cantidad;
+        boolean disponible;
+        //creamos obj del controlador
+        ProductoControlador pc = new ProductoControlador();
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_modificarProducto.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
+        //llenamos la lista con el metodo del controlador
+        List<Producto> lista = pc.buscarTodos();
+        //recorremos la lista y llenamos la tabla
+        for(Producto p : lista){
+            nombre_producto = p.getNombre_producto();
+            tipo_producto = p.getTipo_producto();
+            descripcion = p.getDescripcion();
+            precio = p.getPrecio();
+            cantidad = p.getCantidad();
+            disponible = p.isDisponible();
+            
+            modelo.addRow(new Object[]{nombre_producto, tipo_producto, descripcion, precio, cantidad, disponible});
+        }
+    }
+    //metodo para listar todos los productos para modificar
+    private void listarProductos3(){
+        //iniciamos variables
+        String nombre_producto, tipo_producto, descripcion;
+        int precio, cantidad;
+        boolean disponible;
+        //creamos obj del controlador
+        ProductoControlador pc = new ProductoControlador();
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_eliminarproducto.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
+        //llenamos la lista con el metodo del controlador
+        List<Producto> lista = pc.buscarTodos();
+        //recorremos la lista y llenamos la tabla
+        for(Producto p : lista){
+            nombre_producto = p.getNombre_producto();
+            tipo_producto = p.getTipo_producto();
+            descripcion = p.getDescripcion();
+            precio = p.getPrecio();
+            cantidad = p.getCantidad();
+            disponible = p.isDisponible();
+            
+            modelo.addRow(new Object[]{nombre_producto, tipo_producto, descripcion, precio, cantidad, disponible});
+        }
+    }
+    //Metodo para buscar por nombre producto
+    private void listarNombre(String nombre){
+        //iniciamos variables
+        String nombre_producto, tipo_producto, descripcion;
+        int precio, cantidad;
+        boolean disponible;
+        //creamos obj del controlador
+        ProductoControlador pc = new ProductoControlador();
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_listarProductos.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
+        //llenamos la lista con el metodo del controlador
+        Producto p = pc.buscarProducto(nombre);
+        //llenamos la tabla
+        nombre_producto = p.getNombre_producto();
+        tipo_producto = p.getTipo_producto();
+        descripcion = p.getDescripcion();
+        precio = p.getPrecio();
+        cantidad = p.getCantidad();
+        disponible = p.isDisponible();
+            
+        modelo.addRow(new Object[]{nombre_producto, tipo_producto, descripcion, precio, cantidad, disponible});
+        
+    }
+    //metodo para buscar por nombre producto tabla modificar
+    private void listarNombre2(String nombre){
+        //iniciamos variables
+        String nombre_producto, tipo_producto, descripcion;
+        int precio, cantidad;
+        boolean disponible;
+        //creamos obj del controlador
+        ProductoControlador pc = new ProductoControlador();
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_modificarProducto.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
+        //llenamos la lista con el metodo del controlador
+        Producto p = pc.buscarProducto(nombre);
+        //llenamos la tabla
+        nombre_producto = p.getNombre_producto();
+        tipo_producto = p.getTipo_producto();
+        descripcion = p.getDescripcion();
+        precio = p.getPrecio();
+        cantidad = p.getCantidad();
+        disponible = p.isDisponible();
+            
+        modelo.addRow(new Object[]{nombre_producto, tipo_producto, descripcion, precio, cantidad, disponible});
+        
+    }
+    //metodo para buscar por nombre producto tabla eliminar
+    private void listarNombre3(String nombre){
+        //iniciamos variables
+        String nombre_producto, tipo_producto, descripcion;
+        int precio, cantidad;
+        boolean disponible;
+        //creamos obj del controlador
+        ProductoControlador pc = new ProductoControlador();
+        //creamos una copia de la tabla inicial para trabajar
+        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_eliminarproducto.getModel();
+        //dejamos filas 0 inicialmente
+        modelo.setRowCount(0);
+        //llenamos la lista con el metodo del controlador
+        Producto p = pc.buscarProducto(nombre);
+        //llenamos la tabla
+        nombre_producto = p.getNombre_producto();
+        tipo_producto = p.getTipo_producto();
+        descripcion = p.getDescripcion();
+        precio = p.getPrecio();
+        cantidad = p.getCantidad();
+        disponible = p.isDisponible();
+            
+        modelo.addRow(new Object[]{nombre_producto, tipo_producto, descripcion, precio, cantidad, disponible});
+        
     }
 
     /**
@@ -103,7 +264,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
 
         jtpMantenedorProducto.setBackground(new java.awt.Color(0, 153, 153));
 
-        jpAgregarProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Agregar Producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
+        jpAgregarProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Agregar Producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 153, 153))); // NOI18N
 
         jlNomProduc.setText("Nombre Producto:");
 
@@ -244,7 +405,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
 
         jpListarProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Buscar Producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Buscar Producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 153, 153))); // NOI18N
 
         jLabel1.setText("Nombre Producto:");
 
@@ -327,6 +488,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtbl_listarProductos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtbl_listarProductos);
 
         jbtnSalirListar.setBackground(new java.awt.Color(0, 153, 153));
@@ -370,7 +532,7 @@ public class MantenedorProducto extends javax.swing.JFrame {
 
         jtpMantenedorProducto.addTab("Listar", jpListarProducto);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 153, 153))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(0, 153, 153));
 
         jlbIdBuscarModificar.setText("Nombre producto:");
@@ -541,6 +703,11 @@ public class MantenedorProducto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtbl_modificarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtbl_modificarProductoMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jtbl_modificarProducto);
 
         jScrollPane3.setViewportView(jScrollPane4);
@@ -633,12 +800,17 @@ public class MantenedorProducto extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtbl_eliminarproducto);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 153, 153))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 153, 153))); // NOI18N
 
         jlbTPbuscar_eliminar.setText("Nombre Producto:");
 
         jbtnBuscar_Eliminar.setBackground(new java.awt.Color(153, 153, 153));
         jbtnBuscar_Eliminar.setText("Buscar");
+        jbtnBuscar_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBuscar_EliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -772,6 +944,18 @@ public class MantenedorProducto extends javax.swing.JFrame {
 ////               
 //            }
 //        }
+        //
+        String nombre;
+        nombre = this.jtxListarNombre.getText();
+        if(nombre.isEmpty()){
+            listarProductos();
+            JOptionPane.showMessageDialog(this, "Ingrese Nombre Producto", "Validacion", 2);
+            this.jtxListarNombre.requestFocus();
+            return;
+        }
+        System.out.println(nombre);
+        listarNombre(nombre);
+        
     }//GEN-LAST:event_jbtnBuscarNPActionPerformed
 
     private void jtxListarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxListarNombreActionPerformed
@@ -867,46 +1051,58 @@ public class MantenedorProducto extends javax.swing.JFrame {
 
     private void jbtn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_modificarActionPerformed
              //rescatamos los datos
-        String nombre_producto = this.jtxtNomProduc.getText();
-        String tipo_producto = (String) this.jcomboxTipProduc.getSelectedItem();
-        String descripcion = this.jtxtDescripProduc.getText();
-        String precio_str  = this.jtxtPrecio.getText();
-        String cantidad_str = this.jtxtCantidad.getText();
-        Boolean disponible = this.jCheckBox1.isSelected();
+        String nombre_producto = this.jtxtNPmodificar.getText();
+        String tipo_producto = (String) this.jcomboxTPmodificar.getSelectedItem();
+        String descripcion = this.jtxtDPmodificar.getText();
+        String precio_str  = this.jtxtPPmodificar1.getText();
+        String cantidad_str = this.jtxtCPmodificar.getText();
+        Boolean disponible = this.jcbDispModificar.isSelected();
+        String id_prod = this.jtxtIDmodifar.getText();
 
         if (nombre_producto.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese Nombre del Producto", "Validacion", 2);
-            this.jtxtNomProduc.requestFocus();
+            this.jtxtNPmodificar.requestFocus();
             return;
         }
         if (tipo_producto.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Seleccione Tipo de Producto", "Validacion", 2);
-            this.jcomboxTipProduc.requestFocus();
+            this.jcomboxTPmodificar.requestFocus();
             return;
         }
         if (descripcion.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese Descripción del Producto", "Validacion", 2);
-            this.jtxtDescripProduc.requestFocus();
+            this.jtxtDPmodificar.requestFocus();
             return;
         }
         if (precio_str.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese Precio del Producto", "Validacion", 2);
-            this.jtxtPrecio.requestFocus();
+            this.jtxtPPmodificar1.requestFocus();
             return;
         }
         if (cantidad_str.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingrese Cantidad del Producto", "Validacion", 2);
-            this.jtxtCantidad.requestFocus();
+            this.jtxtCPmodificar.requestFocus();
             return;
         }
-       
-        int precio, cantidad;
-        precio = Integer.parseInt(precio_str);
-        cantidad = Integer.parseInt(cantidad_str); 
-
-                          
+        if (id_prod.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Seleccione un Producto", "Validacion", 2);
+            //this.jtxtCPmodificar.requestFocus();
+            return;
+        }
+        int precio =0, cantidad=0, id_producto;
+        try {
+            precio = Integer.parseInt(precio_str);
+            cantidad = Integer.parseInt(cantidad_str);
+            id_producto = Integer.parseInt(id_prod);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(this, "No ingreso numero", "Validacion", 2);
+            return;
+        }
+                       
         //Guardamos los nuevos datos del producto
         Producto producto= new Producto();
+        producto.setId_producto(id_producto);
         producto.setNombre_producto(nombre_producto);
         producto.setTipo_producto(tipo_producto);
         producto.setDescripcion(descripcion);
@@ -919,6 +1115,10 @@ public class MantenedorProducto extends javax.swing.JFrame {
         try {
             if (cc.modificarProducto(producto)) {
             JOptionPane.showMessageDialog(this, "Producto modificado!", "Ingreso", 1);
+            //actualizamos las tablas
+            listarProductos();
+            listarProductos2();
+            listarProductos3();
         } else {
             JOptionPane.showMessageDialog(this, "Producto no se pudo modificar", "Validacion", 1);
         }
@@ -929,80 +1129,213 @@ public class MantenedorProducto extends javax.swing.JFrame {
 
     private void jbtn_eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_eliminarProductoActionPerformed
        
-        Producto producto;
+//        Producto producto;
+//        int fila;
+//        String nombre_producto;
+//
+//        ProductoControlador cc = new ProductoControlador();
+//
+//        try {
+//            fila = this.jtbl_eliminarproducto.getSelectedRow();
+//            nombre_producto = (String) this.jtbl_eliminarproducto.getValueAt(fila, 0);
+//
+//            producto = cc.buscarProducto(nombre_producto);
+//
+//            cc.eliminarProducto(nombre_producto);
+//
+//            JOptionPane.showMessageDialog(this, "Producto eliminado!", "Eliminar", 1);
+//
+//           // llenarTablaClientes();
+//
+//        } catch (Exception e) {
+//            System.out.println("e.getMessage");
+//        }
+        //Actualizamos el atributo "disponible" a false para "eliminar" al producto seleccionado.
+        Producto producto = new Producto();
         int fila;
-        String nombre_producto;
-
-        ProductoControlador cc = new ProductoControlador();
-
+        String nombre;
+        ProductoControlador pc = new ProductoControlador();
         try {
             fila = this.jtbl_eliminarproducto.getSelectedRow();
-            nombre_producto = (String) this.jtbl_eliminarproducto.getValueAt(fila, 0);
-
-            producto = cc.buscarProducto(nombre_producto);
-
-            cc.eliminarProducto(nombre_producto);
-
-            JOptionPane.showMessageDialog(this, "Producto eliminado!", "Eliminar", 1);
-
-           // llenarTablaClientes();
-
+            nombre = (String) this.jtbl_eliminarproducto.getValueAt(fila, 0);
+            producto = pc.buscarProducto(nombre);
+            producto.setDisponible(false);
+            if (pc.modificarProducto(producto)) {
+            JOptionPane.showMessageDialog(this, "Producto Eliminado(No disponible)!", "Eliminar", 1);
+            //actualizamos las tablas
+            listarProductos();
+            listarProductos2();
+            listarProductos3();
+            } else {
+                JOptionPane.showMessageDialog(this, "Producto no se pudo Eliminar", "Validacion", 1);
+            }
+            
         } catch (Exception e) {
             System.out.println("e.getMessage");
         }
+        
     }//GEN-LAST:event_jbtn_eliminarProductoActionPerformed
 
     private void jbtn_buscarModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_buscarModificarActionPerformed
-    //Se inician las variables, controladores y la tabla
-        int  precio,cantidad;
-        String nombre_producto, tipo_producto, descripcion;
-        boolean disponible;
-
-        ProductoControlador cc = new ProductoControlador();
-
-        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_modificarProducto.getModel();
-
-        nombre_producto = this.jtxtBuscarModificar.getText();
-        modelo.setRowCount(0);
-
-        //revisamos criterio de busqueda y se llena la tabla con los resultados
-        if (nombre_producto.equals("")) {
-
-            List <Producto> lista = cc.buscarTodos();
-           
-
-            for (Producto producto : lista) {
-                nombre_producto = producto.getNombre_producto();
-                tipo_producto = producto.getTipo_producto();
-                descripcion = producto.getDescripcion();
-                precio = producto.getPrecio();
-                cantidad = producto.getCantidad();
-                disponible= producto.isDisponible();
-
-                modelo.addRow(new Object[]{nombre_producto,tipo_producto,descripcion,precio,cantidad,disponible});
+//    //Se inician las variables, controladores y la tabla
+//        int  precio,cantidad;
+//        String nombre_producto, tipo_producto, descripcion;
+//        boolean disponible;
+//
+//        ProductoControlador cc = new ProductoControlador();
+//
+//        DefaultTableModel modelo = (DefaultTableModel) this.jtbl_modificarProducto.getModel();
+//
+//        nombre_producto = this.jtxtBuscarModificar.getText();
+//        modelo.setRowCount(0);
+//
+//        //revisamos criterio de busqueda y se llena la tabla con los resultados
+//        if (nombre_producto.equals("")) {
+//
+//            List <Producto> lista = cc.buscarTodos();
+//           
+//
+//            for (Producto producto : lista) {
+//                nombre_producto = producto.getNombre_producto();
+//                tipo_producto = producto.getTipo_producto();
+//                descripcion = producto.getDescripcion();
+//                precio = producto.getPrecio();
+//                cantidad = producto.getCantidad();
+//                disponible= producto.isDisponible();
+//
+//                modelo.addRow(new Object[]{nombre_producto,tipo_producto,descripcion,precio,cantidad,disponible});
+//            }
+//        } else {
+//
+//            List <Producto> lista = cc.listarTodosProductosNombre();
+//
+//            for (Producto producto : lista){
+//                
+//                nombre_producto = producto.getNombre_producto();
+//                tipo_producto = producto.getTipo_producto();
+//                descripcion = producto.getDescripcion();
+//                precio = producto.getPrecio();
+//                cantidad = producto.getCantidad();
+//                disponible= producto.isDisponible();
+//
+//                modelo.addRow(new Object[]{nombre_producto,tipo_producto,descripcion,precio,cantidad,disponible});
+//                
+//            }
+//        }      // TODO add your handling code here:
+           //
+           String nombre;
+            nombre = this.jtxtBuscarModificar.getText();
+            if(nombre.isEmpty()){
+                listarProductos2();
+                JOptionPane.showMessageDialog(this, "Ingrese Nombre Producto", "Validacion", 2);
+                this.jtxtBuscarModificar.requestFocus();
+                return;
             }
-        } else {
-
-            List <Producto> lista = cc.listarTodosProductosNombre();
-
-            for (Producto producto : lista){
-                
-                nombre_producto = producto.getNombre_producto();
-                tipo_producto = producto.getTipo_producto();
-                descripcion = producto.getDescripcion();
-                precio = producto.getPrecio();
-                cantidad = producto.getCantidad();
-                disponible= producto.isDisponible();
-
-                modelo.addRow(new Object[]{nombre_producto,tipo_producto,descripcion,precio,cantidad,disponible});
-                
-            }
-        }      // TODO add your handling code here:
+            System.out.println(nombre);
+            listarNombre2(nombre);
     }//GEN-LAST:event_jbtn_buscarModificarActionPerformed
 
     private void jbtnSalirListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSalirListarActionPerformed
         dispose();
     }//GEN-LAST:event_jbtnSalirListarActionPerformed
+
+    private void jtbl_modificarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbl_modificarProductoMouseClicked
+        // Cuendo se clickee llenaremos los campos
+        Producto producto = new Producto();
+        int fila;
+        String nombre, tipo;
+        ProductoControlador pc = new ProductoControlador();
+        try {
+            fila = this.jtbl_modificarProducto.getSelectedRow();
+            nombre = (String) this.jtbl_modificarProducto.getValueAt(fila, 0);
+            producto = pc.buscarProducto(nombre);
+            //llenamos los campos
+            this.jtxtIDmodifar.setText(producto.getId_producto()+"");
+            this.jtxtNPmodificar.setText(producto.getNombre_producto());
+            tipo = producto.getTipo_producto();
+            //preguntare que item es y repintare el combobox
+            if(tipo.equalsIgnoreCase("Accesorio")){
+                this.jcomboxTPmodificar.removeAllItems();
+                //en el orden nuevo dejando primero el q llega de la bd
+                this.jcomboxTPmodificar.addItem("Accesorio");
+                this.jcomboxTPmodificar.addItem("Armazon");
+                this.jcomboxTPmodificar.addItem("Cristal");
+                this.jcomboxTPmodificar.addItem("Gafa");
+                this.jcomboxTPmodificar.addItem("Reparación");
+                this.jcomboxTPmodificar.addItem("Traspaso");
+            }else if(tipo.equalsIgnoreCase("Armazon")){
+                this.jcomboxTPmodificar.removeAllItems();
+                //en el orden nuevo dejando primero el q llega de la bd
+                this.jcomboxTPmodificar.addItem("Armazon");
+                this.jcomboxTPmodificar.addItem("Cristal");
+                this.jcomboxTPmodificar.addItem("Gafa");
+                this.jcomboxTPmodificar.addItem("Reparación");
+                this.jcomboxTPmodificar.addItem("Traspaso");
+                this.jcomboxTPmodificar.addItem("Accesorio");
+            }else if(tipo.equalsIgnoreCase("Cristal")){
+                this.jcomboxTPmodificar.removeAllItems();
+                //en el orden nuevo dejando primero el q llega de la bd
+                this.jcomboxTPmodificar.addItem("Cristal");
+                this.jcomboxTPmodificar.addItem("Gafa");
+                this.jcomboxTPmodificar.addItem("Reparación");
+                this.jcomboxTPmodificar.addItem("Traspaso");
+                this.jcomboxTPmodificar.addItem("Accesorio");
+                this.jcomboxTPmodificar.addItem("Armazon");
+            }else if(tipo.equalsIgnoreCase("Gafa")){
+                this.jcomboxTPmodificar.removeAllItems();
+                //en el orden nuevo dejando primero el q llega de la bd
+                this.jcomboxTPmodificar.addItem("Gafa");
+                this.jcomboxTPmodificar.addItem("Reparación");
+                this.jcomboxTPmodificar.addItem("Traspaso");
+                this.jcomboxTPmodificar.addItem("Accesorio");
+                this.jcomboxTPmodificar.addItem("Armazon");
+                this.jcomboxTPmodificar.addItem("Cristal");
+            }else if(tipo.equalsIgnoreCase("Reparación")){
+                this.jcomboxTPmodificar.removeAllItems();
+                //en el orden nuevo dejando primero el q llega de la bd
+                this.jcomboxTPmodificar.addItem("Reparación");
+                this.jcomboxTPmodificar.addItem("Traspaso");
+                this.jcomboxTPmodificar.addItem("Accesorio");
+                this.jcomboxTPmodificar.addItem("Armazon");
+                this.jcomboxTPmodificar.addItem("Cristal");
+                this.jcomboxTPmodificar.addItem("Gafa");
+            }else if(tipo.equalsIgnoreCase("Traspaso")){
+                this.jcomboxTPmodificar.removeAllItems();
+                //en el orden nuevo dejando primero el q llega de la bd
+                this.jcomboxTPmodificar.addItem("Traspaso");
+                this.jcomboxTPmodificar.addItem("Accesorio");
+                this.jcomboxTPmodificar.addItem("Armazon");
+                this.jcomboxTPmodificar.addItem("Cristal");
+                this.jcomboxTPmodificar.addItem("Gafa");
+                this.jcomboxTPmodificar.addItem("Reparación");
+            }else{
+                System.out.println(tipo);
+                System.out.println("no hizo nada esta wea");
+            }
+            //this.jcomboxTPmodificar.setSelectedIndex(WIDTH);
+            this.jtxtDPmodificar.setText(producto.getDescripcion());
+            this.jtxtPPmodificar1.setText(producto.getPrecio()+"");
+            this.jtxtCPmodificar.setText(producto.getCantidad()+"");
+            this.jcbDispModificar.setSelected(producto.isDisponible());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+                
+    }//GEN-LAST:event_jtbl_modificarProductoMouseClicked
+
+    private void jbtnBuscar_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscar_EliminarActionPerformed
+        // TODO add your handling code here:
+        String nombre;
+        nombre = this.jtxt_buscarnombre.getText();
+        if(nombre.isEmpty()){
+            listarProductos3();
+            JOptionPane.showMessageDialog(this, "Ingrese Nombre Producto", "Validacion", 2);
+            this.jtxt_buscarnombre.requestFocus();
+            return;
+        }
+        System.out.println(nombre);
+        listarNombre3(nombre);
+    }//GEN-LAST:event_jbtnBuscar_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
